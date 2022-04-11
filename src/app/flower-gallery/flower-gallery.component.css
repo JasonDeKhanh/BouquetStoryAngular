@@ -5,3 +5,76 @@
     margin-bottom: 2rem;
     background-color: white;
 }
+
+.flower-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.flower-description {
+    margin: 0 0 1rem 0;
+}
+
+.flower-list-item .flower-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    align-self: flex-end;
+}
+
+.flower-grid-item {
+    margin: 0.5em;
+    border: 1px solid #dee2e6;
+}
+
+.flower-grid-item .flower-grid-item-top, .flower-grid-item .flower-grid-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flower-grid-item .flower-grid-item-content {
+    text-align: center;
+}
+
+.flower-grid-item .flower-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* .card2 {
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    background-color: white;
+    width: 20px;
+} */
+
+/* @media screen and (max-width: 576px) {
+    .flower-list-item {
+        flex-direction: column;
+        align-items: center;
+   }
+    .flower-list-item img {
+        width: 75%;
+        margin: 2rem 0;
+   }
+    .flower-list-item .flower-list-detail {
+        text-align: center;
+   }
+    .flower-list-item .flower-price {
+        align-self: center;
+   }
+    .flower-list-item .flower-list-action {
+        display: flex;
+        flex-direction: column;
+   }
+    .flower-list-item .flower-list-action {
+        margin-top: 2rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+   }
+} */
