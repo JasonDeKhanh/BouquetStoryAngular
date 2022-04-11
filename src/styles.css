@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/lara-light-indigo/theme.css';
+@import '~primeng/resources/primeng.min.css';
+
+html {
+    height: 100vh;
+    width: 100vw;
+    background: url('/assets/background2.png');
+    background-size: cover;
+    padding: 0%;
+    margin: 0%;
+}
