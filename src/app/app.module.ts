@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,12 @@ import { MenuItem } from 'primeng/api';
 import { TabViewModule } from 'primeng/tabview';
 import { FlowerGalleryComponent } from './flower-gallery/flower-gallery.component';
 import { DataViewModule } from 'primeng/dataview';
+import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -28,9 +36,18 @@ import { DataViewModule } from 'primeng/dataview';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
     ButtonModule,
     MenubarModule,
     TabViewModule,
+    DataViewModule,
+    InputTextModule,
+    PanelModule,
+    DropdownModule,
+    DialogModule,
+    RippleModule,
+    TableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

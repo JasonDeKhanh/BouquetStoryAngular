@@ -1,0 +1,10 @@
+{
+    "/api/*": {
+        "target": "http://localhost:8080/BouquetStorySystemRws/Resources",
+        "secure": false,
+        "pathRewrite": {
+          "^/api": ""
+        },
+        "changeOrigin": true
+    }
+}
