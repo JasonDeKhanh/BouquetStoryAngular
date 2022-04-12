@@ -11,8 +11,8 @@ export abstract class Bouquet extends Product {
 
     container: Container | undefined;
 
-    decorations: { decoration: Decoration } | undefined;
-    flowers: { flower: Flower } | undefined;
+    decorations: Decoration[] | undefined;
+    flowers: Flower[] | undefined;
 
     constructor(itemId?: number, creatorName?: string) {
         super(itemId);
