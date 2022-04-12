@@ -3,7 +3,7 @@ import { Product } from "./product";
 import { Flower } from "./flower";
 import { Container } from "./container";
 
-export class Bouquet extends Product {
+export abstract class Bouquet extends Product {
 
     creatorName: string | undefined;
     flowerQuantities: Map<Flower, number> | undefined;
