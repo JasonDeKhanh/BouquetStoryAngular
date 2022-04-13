@@ -3,10 +3,31 @@
     <div id="bigLogo"><img src="\assets\Banner4.png" height="170" class="mr-2"></div>
 
     <p-menubar id="menubar" [model]="items">
-
-        <ng-template pTemplate="end">
-            <input type="text" pInputText placeholder="Search">
-            test hello
+        <!-- <p-messages [(value)]="msgs"></p-messages> -->
+        <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == false">
+            <form name="loginForm">
+                <label for="username">Username </label>
+                <input type="text" pInputText size="16" [(ngModel)]="username"  name="username" required maxlength="32" />
+                &nbsp;
+                <label for="password">Password </label>
+                <input type="password" pInputText size="16" [(ngModel)]="password"  name="password" required maxlength="32" />
+                &nbsp;
+                <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button>
+                &nbsp;
+                <button pButton pRipple type="button" label="Login"  (click)="customerLogin()" ></button>
+                &nbsp;
+                <button pButton pRipple type="button" routerLink="/registerNewCustomer" label="Register" class="p-button-text p-button-plain"></button>
+            </form>
         </ng-template>
+
+        <div *ngIf="loginError == true" style="text-align: right; color: red;">
+			Invalid login credential: Username does not exist or invalid password!
+		</div>
+
+        <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == true">
+            <label for="btn"> You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} </label>
+            &nbsp;
+			<button name="btn" type="button" pButton pRipple  (click)="customerLogout()" label="Logout" ></button>
+		</ng-template>
     </p-menubar>
 </div>

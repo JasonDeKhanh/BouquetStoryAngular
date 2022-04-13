@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { SessionService } from '../services/session.service';
+import { CustomerService } from '../services/customer.service';
+import { RegisteredGuest } from '../models/registered-guest';
 
 import { MenuItem } from 'primeng/api';
-
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -10,10 +14,19 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit {
     items: MenuItem[];
 
-    constructor() {
+    username: string | undefined;
+    password: string | undefined;
+    loginError: boolean;
+    errorMessage: string | undefined;
+
+    constructor(private router: Router,
+                public sessionService: SessionService,
+                private customerService: CustomerService,) {
 
         this.items = new Array();
-
+        this.loginError = false;
+        this.username = '';
+        this.password = '';
     }
 
     ngOnInit(): void {
@@ -92,4 +105,43 @@ export class HeaderComponent implements OnInit {
             },
         ]; // end of items
     }
+
+    customerLogin(): void
+    {
+        console.log(this.username)
+        console.log(this.password)
+        this.sessionService.setUsername(this.username);
+        this.sessionService.setPassword(this.password);
+                    
+        this.customerService.customerLogin(this.username, this.password).subscribe({
+            next:(response)=>{
+                let customer: RegisteredGuest = response;
+
+                if(customer != null)
+                {
+                    this.sessionService.setIsLogin(true);
+                    this.sessionService.setCurrentCustomer(customer);					
+                    this.loginError = false;	
+                    window.location.reload();			                    					
+                }
+                else
+                {
+                    this.loginError = true;
+                }
+            },
+            error:(error)=>{
+                this.loginError = true;
+                        this.errorMessage = error
+            }
+        });
+    }
+
+    customerLogout(): void
+    {
+        this.sessionService.setIsLogin(false);
+        this.sessionService.setCurrentCustomer(null);
+        window.location.reload();
+        this.router.navigate(["/index"]);
+    }
+
 }

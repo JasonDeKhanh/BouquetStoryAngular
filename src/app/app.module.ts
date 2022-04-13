@@ -24,6 +24,7 @@ import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
+import { RegisterNewCustomerComponent } from './register-new-customer/register-new-customer.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
     IndexComponent,
     HeaderComponent,
     FlowerGalleryComponent,
-    AllAddOnsComponent
+    AllAddOnsComponent,
+    RegisterNewCustomerComponent
   ],
   imports: [
     BrowserModule,

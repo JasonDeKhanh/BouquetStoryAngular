@@ -7,8 +7,8 @@ export class RegisteredGuest extends Customer {
 
     addresses: Address[] | undefined;
 
-    constructor(customerId?: number, firstName?: string, lastName?: string, username?: string, password?: string) {
-        super(customerId, firstName, lastName, username)
+    constructor(customerId?: number, firstName?: string, lastName?: string, email?: string, password?: string) {
+        super(customerId, firstName, lastName, email)
         this.password = password;
     }
 
