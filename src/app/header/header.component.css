@@ -1,16 +1,9 @@
 #bigLogo {
     text-align: center;
-    margin:0;
+    /* margin:0; */
 }
 
-/* #background {
-    height: 100vh;
-    width: 100vw;
-    background: url('/assets/background.png');
-    background-size: cover;
-    margin: 0;
-} */
-
-.wrapper {
-    margin: 0;
+.menubar {
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
