@@ -1,10 +1,8 @@
-<h1>weeee Flower Gallery Page</h1>
-<p>flower-gallery works!</p>
-
+<br />
 <div class="card">
     <p-dataView #dv [value]="flowers" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
         [sortOrder]="sortOrder" layout="grid">
-        <!-- <ng-template pTemplate="header">
+        <ng-template pTemplate="header">
             <div class="flex flex-column md:flex-row md:justify-content-between">
                 <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
                     styleClass="mb-2 md:mb-0"></p-dropdown>
@@ -15,16 +13,31 @@
                 </span>
                 <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
             </div>
-        </ng-template> -->
+        </ng-template>
         <ng-template let-flower pTemplate="gridItem">
-            <div class="col-12 md:col-3">
-                {{flower.name}}
+            <div class="p-col-12 md:col-4">
+                <div class="flower-grid-item card">
+                    <div class="flower-grid-item-top">
+                        <div>
+                            <span class="flower-category">{{flower.color}}</span>
+                        </div>
+                    </div>
+                    <div class="flower-grid-item-content">
+                        <img [src]="'http://localhost:8080/BouquetStorySystem-war/' + flower.imgAddress" />
+                        <div class="flower-name">{{flower.name}}</div>
+                        <div class="flower-description">{{flower.description}}</div>
+                    </div>
+                    <div class="flower-grid-item-bottom">
+                        <span class="flower-price">${{flower.unitPrice}}</span>
+                    </div>
+                </div>
             </div>
         </ng-template>
         <ng-template pTemplate="footer">Test Footer</ng-template>
     </p-dataView>
 
-    <p-table [value]="flowers">
+
+    <!-- <p-table [value]="flowers">
         <ng-template pTemplate="header">
             <tr>
                 <th>Flower ID</th>
@@ -37,5 +50,5 @@
                 <td>{{flower.name}}</td>
             </tr>
         </ng-template>
-    </p-table>
+    </p-table> -->
 </div>

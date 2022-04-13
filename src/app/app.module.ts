@@ -23,6 +23,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
+import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { TableModule } from 'primeng/table';
     AppComponent,
     IndexComponent,
     HeaderComponent,
-    FlowerGalleryComponent
+    FlowerGalleryComponent,
+    AllAddOnsComponent
   ],
   imports: [
     BrowserModule,
