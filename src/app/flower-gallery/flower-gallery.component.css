@@ -37,6 +37,10 @@
     text-align: center;
 }
 
+.flower-grid-item-content > img {
+    height: 200px;
+}
+
 .flower-grid-item .flower-price {
     font-size: 1.5rem;
     font-weight: 600;
