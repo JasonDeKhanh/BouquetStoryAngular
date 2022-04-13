@@ -4,10 +4,11 @@
 @import '~primeng/resources/primeng.min.css';
 
 html {
-    height: 100vh;
+    /* height: 100vh;
     width: 100vw;
     background: url('/assets/BackgroundNew.png');
-    background-size: cover;
+    background-size: cover; */
+    background-color: #F2E8E0;
 }
 
 /* div {

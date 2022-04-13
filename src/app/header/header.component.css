@@ -1,5 +1,6 @@
 #bigLogo {
     text-align: center;
+    margin:0;
 }
 
 /* #background {
@@ -9,3 +10,7 @@
     background-size: cover;
     margin: 0;
 } */
+
+.wrapper {
+    margin: 0;
+}
