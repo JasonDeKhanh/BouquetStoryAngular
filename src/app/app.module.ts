@@ -25,6 +25,7 @@ import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
 import { RegisterNewCustomerComponent } from './register-new-customer/register-new-customer.component';
+import { AllBundlesComponent } from './all-bundles/all-bundles.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { RegisterNewCustomerComponent } from './register-new-customer/register-n
     HeaderComponent,
     FlowerGalleryComponent,
     AllAddOnsComponent,
-    RegisterNewCustomerComponent
+    RegisterNewCustomerComponent,
+    AllBundlesComponent
   ],
   imports: [
     BrowserModule,
