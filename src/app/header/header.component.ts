@@ -161,8 +161,8 @@ export class HeaderComponent implements OnInit {
             error:(error) =>{
               this.registerError = true;
               this.registerSuccess = false;
-              this.message = "An error has occurred while registering new account: \n" + error;
-            //   this.message = "This email is already registered as a customer!";
+            //   this.message = "An error has occurred while registering new account: \n" + error;
+              this.message = "This email is already registered as a customer!";
               
               console.log('********** RegisterNewAccount.ts: ' + error);
             }
