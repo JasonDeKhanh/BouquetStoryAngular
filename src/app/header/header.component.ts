@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
         this.loginError = false;
 
         this.newCustomer = new RegisteredGuest();
+
         this.registerSuccess = false;
         this.registerError = false;
     }
@@ -144,8 +145,12 @@ export class HeaderComponent implements OnInit {
     }
 
     registerNewCustomer(){
+        let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+        
+        var  isEmailValid:boolean = regexp.test(this.newCustomer.email!);
+        
         if(this.newCustomer.firstName!=null && this.newCustomer.lastName!=null &&
-            this.newCustomer.email!=null && this.newCustomer.password!=null) {
+            this.newCustomer.email!=null && this.newCustomer.password!=null && isEmailValid) {
           this.customerService.createNewCustomer(this.newCustomer).subscribe({
             next:(response) => {
               this.registerSuccess = true;
