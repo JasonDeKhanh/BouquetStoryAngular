@@ -59,6 +59,11 @@ export class HeaderComponent implements OnInit {
             {
                 label: 'Gift Cards',
             },
+            // Bundles
+            {
+                label: 'Bundles',
+                routerLink: ["/bundles"]
+            },
             // FLower Gallery
             {
                 label: 'Flowers Gallery',

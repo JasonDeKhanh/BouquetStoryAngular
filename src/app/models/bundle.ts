@@ -4,7 +4,7 @@ import { Product } from "./product";
 
 export class Bundle extends Item {
 
-    bundleName: string | undefined;
+    name: string | undefined;
     imgAddress: string | undefined;
     isOnDisplay: boolean | undefined;
     productQuantities: Map<Product, number> | undefined;
@@ -12,10 +12,10 @@ export class Bundle extends Item {
     promotion: Promotion | undefined;
     products: Product[] | undefined;
 
-    constructor(itemId?: number, bundleName?: string) {
+    constructor(itemId?: number, name?: string) {
         super(itemId);
 
-        this.bundleName = bundleName;
+        this.name = name;
         this.productQuantities = new Map<Product, number>();
 
     }
