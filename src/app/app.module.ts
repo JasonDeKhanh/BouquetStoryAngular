@@ -11,7 +11,8 @@ import { HeaderComponent } from './header/header.component';
 
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api';
+import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
 // You have to import MenuItem in the component where you are going to use it, 
 // you can't import it in app.module.ts because you can't include it in ngmodule imports
 import { TabViewModule } from 'primeng/tabview';
@@ -52,6 +53,7 @@ import { RegisterNewCustomerComponent } from './register-new-customer/register-n
     DialogModule,
     RippleModule,
     TableModule,
+    MenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

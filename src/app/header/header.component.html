@@ -20,14 +20,17 @@
             </form>
         </ng-template>
 
-        <div *ngIf="loginError == true" style="text-align: right; color: red;">
+        <!-- <div *ngIf="loginError == true" style="text-align: right; color: red;">
 			Invalid login credential: Username does not exist or invalid password!
-		</div>
+		</div> -->
 
         <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == true">
-            <label for="btn"> You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} </label>
+            <!-- <label for="btn"> You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} </label>
+            &nbsp; -->
+            <button type="button" pButton pRipple icon="pi pi-fw pi-user" label="{{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}}" class="p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
             &nbsp;
-			<button name="btn" type="button" pButton pRipple  (click)="customerLogout()" label="Logout" ></button>
+            <p-menu #menu [popup]="true" [model]="userItems"></p-menu>
+			<!-- <button name="btn" type="button" pButton pRipple  (click)="customerLogout()" label="Logout" ></button> -->
 		</ng-template>
     </p-menubar>
 </div>

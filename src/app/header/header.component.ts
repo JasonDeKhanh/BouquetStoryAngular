@@ -6,6 +6,7 @@ import { CustomerService } from '../services/customer.service';
 import { RegisteredGuest } from '../models/registered-guest';
 
 import { MenuItem } from 'primeng/api';
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -13,56 +14,28 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
     items: MenuItem[];
+    userItems: MenuItem[];
 
     username: string | undefined;
     password: string | undefined;
     loginError: boolean;
     errorMessage: string | undefined;
+    isLoggedIn: boolean;
 
     constructor(private router: Router,
                 public sessionService: SessionService,
                 private customerService: CustomerService,) {
 
         this.items = new Array();
+        this.userItems = new Array();
         this.loginError = false;
         this.username = '';
         this.password = '';
+        this.isLoggedIn = sessionService.getIsLogin();
     }
 
     ngOnInit(): void {
         this.items = [
-            // {
-            //     label: 'File',
-            //     icon: 'pi pi-fw pi-file',
-            //     items: [
-            //         {
-            //             label: 'New',
-            //             icon: 'pi pi-fw pi-plus',
-            //             items: [
-            //                 {
-            //                     label: 'Bookmark',
-            //                     icon: 'pi pi-fw pi-bookmark',
-            //                 },
-            //                 {
-            //                     label: 'Video',
-            //                     icon: 'pi pi-fw pi-video',
-            //                 },
-            //             ],
-            //         },
-            //         {
-            //             label: 'Delete',
-            //             icon: 'pi pi-fw pi-trash',
-            //         },
-            //         {
-            //             separator: true,
-            //         },
-            //         {
-            //             label: 'Export',
-            //             icon: 'pi pi-fw pi-external-link',
-            //         },
-            //     ],
-            // },
-
             // Home
             {
                 label: 'Home',
@@ -104,6 +77,18 @@ export class HeaderComponent implements OnInit {
                 ],
             },
         ]; // end of items
+        
+        this.userItems = [
+            {
+                label: 'My Profile'
+
+            },
+            {
+                label: 'Logout',
+                command: () => this.customerLogout(),
+            },
+
+        ]
     }
 
     customerLogin(): void
