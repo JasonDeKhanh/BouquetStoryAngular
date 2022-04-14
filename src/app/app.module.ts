@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
@@ -25,7 +24,6 @@ import { DialogModule } from 'primeng/dialog';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
-import { RegisterNewCustomerComponent } from './register-new-customer/register-new-customer.component';
 import { AllBundlesComponent } from './all-bundles/all-bundles.component';
 
 
@@ -36,7 +34,6 @@ import { AllBundlesComponent } from './all-bundles/all-bundles.component';
     HeaderComponent,
     FlowerGalleryComponent,
     AllAddOnsComponent,
-    RegisterNewCustomerComponent,
     AllBundlesComponent
   ],
   imports: [
