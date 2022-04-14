@@ -2,37 +2,40 @@
 
     <div id="bigLogo"><img src="\assets\Banner4.png" height="170" class="mr-2"></div>
 
-    <p-menubar id="menubar" [model]="items">
+    <p-menubar styleClass="main-menubar" [model]="items">
         <!-- <p-messages [(value)]="msgs"></p-messages> -->
         <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == false">
-            
+
             <button type="button" pButton pRipple label="Login" (click)="showLoginDialog()"></button>
             &nbsp;
-            <button pButton pRipple type="button" routerLink="/registerNewCustomer" (click)="showRegisterDialog()" label="Register" class="p-button-text p-button-plain"></button> 
+            <button pButton pRipple type="button" routerLink="/registerNewCustomer" (click)="showRegisterDialog()"
+                label="Register" class="p-button-text p-button-plain"></button>
 
-            <form name="loginForm" ngNativeValidate >
+            <form name="loginForm" ngNativeValidate>
                 <p-dialog header="Login" [(visible)]="displayLoginDialog">
-                
+
                     <div *ngIf="loginError == true" style="text-align: center; color: red; margin-bottom: 10px;">
                         Email does not exist or invalid password!
                     </div>
 
                     <label for="email" style="margin-right: 35px;">Email </label>
-                    <input type="text" pInputText size="25" [(ngModel)]="username"  name="email"  id="email" required />
-                    <br/><br/>
+                    <input type="text" pInputText size="25" [(ngModel)]="username" name="email" id="email" required />
+                    <br /><br />
                     <label for="password" style="margin-right: 5px;">Password </label>
-                    <input type="password" pInputText size="25" [(ngModel)]="password"  name="password" id="password" required/>
-                    <br/><br/>  
+                    <input type="password" pInputText size="25" [(ngModel)]="password" name="password" id="password"
+                        required />
+                    <br /><br />
                     <div style="margin-left: 23%;">
-                        <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> &nbsp; &nbsp;
-                        <button pButton pRipple type="submit" label="Login"  (click)="customerLogin()" ></button>
+                        <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> &nbsp;
+                        &nbsp;
+                        <button pButton pRipple type="submit" label="Login" (click)="customerLogin()"></button>
                     </div>
                 </p-dialog>
             </form>
 
-            <form name="registerForm" ngNativeValidate >
+            <form name="registerForm" ngNativeValidate>
                 <p-dialog header="Register" [(visible)]="displayRegisterDialog">
-                
+
                     <div *ngIf="registerError == true" style="text-align: center; color: red;">
                         {{message}}
                     </div>
@@ -41,25 +44,30 @@
                     </div>
 
                     <label for="firstName" style="margin-right: 10px;">First Name</label>
-                    <input type="text" size="25" pInputText  placeholder="Enter First Name" [(ngModel)]="newCustomer.firstName" name="firstName" id="firstName" required>
-                    <br/><br/>
+                    <input type="text" size="25" pInputText placeholder="Enter First Name"
+                        [(ngModel)]="newCustomer.firstName" name="firstName" id="firstName" required>
+                    <br /><br />
                     <label for="lastName" style="margin-right: 10px;">Last Name</label>
-                    <input type="text"  size="25" pInputText  placeholder="Enter Last Name" [(ngModel)]="newCustomer.lastName" name="lastName" id="lastName" required>
-                    <br/><br/>
+                    <input type="text" size="25" pInputText placeholder="Enter Last Name"
+                        [(ngModel)]="newCustomer.lastName" name="lastName" id="lastName" required>
+                    <br /><br />
                     <label for="email" style="margin-right: 45px;">Email</label>
-                    <input type="email" size="25" pInputText  placeholder="Enter Email" [(ngModel)]="newCustomer.email" name="email" id="email" required >
-                    <br/><br/>
+                    <input type="email" size="25" pInputText placeholder="Enter Email" [(ngModel)]="newCustomer.email"
+                        name="email" id="email" required>
+                    <br /><br />
                     <label for="psw" style="margin-right: 15px;">Password</label>
-                    <input type="password" size="25"  pInputText placeholder="Enter Password"  [(ngModel)]="newCustomer.password" name="psw" id="psw" required>
-                    <br/><br/>
+                    <input type="password" size="25" pInputText placeholder="Enter Password"
+                        [(ngModel)]="newCustomer.password" name="psw" id="psw" required>
+                    <br /><br />
                     <div style="margin-left: 23%;">
                         <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button>
                         &nbsp;&nbsp;&nbsp;
-                        <button type="submit" value="Submit" pButton pRipple class="registerbtn"  (click)="registerNewCustomer()" label="Register"></button>
+                        <button type="submit" value="Submit" pButton pRipple class="registerbtn"
+                            (click)="registerNewCustomer()" label="Register"></button>
                     </div>
                 </p-dialog>
             </form>
-            
+
         </ng-template>
 
         <!-- <div *ngIf="loginError == true" style="text-align: right; color: red;">
@@ -69,10 +77,12 @@
         <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == true">
             <!-- <label for="btn"> You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} </label>
             &nbsp; -->
-            <button type="button" pButton pRipple icon="pi pi-fw pi-user" label="{{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}}" class="p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
+            <button type="button" pButton pRipple icon="pi pi-fw pi-user"
+                label="{{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}}"
+                class="p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
             &nbsp;
             <p-menu #menu [popup]="true" [model]="userItems"></p-menu>
-			<!-- <button name="btn" type="button" pButton pRipple  (click)="customerLogout()" label="Logout" ></button> -->
-		</ng-template>
+            <!-- <button name="btn" type="button" pButton pRipple  (click)="customerLogout()" label="Logout" ></button> -->
+        </ng-template>
     </p-menubar>
 </div>

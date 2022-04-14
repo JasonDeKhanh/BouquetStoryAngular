@@ -1,4 +1,5 @@
 import { FlowerColorEnum } from "./flower-color-enum";
+import { FlowerType } from "./flower-type";
 
 export class Flower {
 
@@ -11,6 +12,8 @@ export class Flower {
     reorderQuantity: number | undefined;
     unitPrice: number | undefined;
     isOnDisplay: boolean | undefined;
+
+    flowerType: FlowerType | undefined;
 
     constructor(flowerId?: number, name?: string, imgAdress?: string, flowerColor?: FlowerColorEnum, description?: string, quantityOnHand?: number, reorderQuantity?: number, unitPrice?: number, isOnDisplay?: boolean) {
         this.flowerId = flowerId;

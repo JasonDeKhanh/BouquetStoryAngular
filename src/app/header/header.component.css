@@ -3,7 +3,8 @@
     /* margin:0; */
 }
 
-.menubar {
-    margin-left: 2rem;
-    margin-right: 2rem;
+:host ::ng-deep .main-menubar.p-menubar {
+    margin-left: 5%;
+    margin-right: 5%;
+    align-self: center;
 }

@@ -10,8 +10,8 @@ import { HeaderComponent } from './header/header.component';
 
 import { ButtonModule } from 'primeng/button';
 import { MenubarModule } from 'primeng/menubar';
-import {MenuModule} from 'primeng/menu';
-import {MenuItem} from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
+import { MenuItem } from 'primeng/api';
 // You have to import MenuItem in the component where you are going to use it, 
 // you can't import it in app.module.ts because you can't include it in ngmodule imports
 import { TabViewModule } from 'primeng/tabview';
@@ -25,6 +25,8 @@ import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
 import { AllBundlesComponent } from './all-bundles/all-bundles.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { AllBundlesComponent } from './all-bundles/all-bundles.component';
     RippleModule,
     TableModule,
     MenuModule,
+    MultiSelectModule,
+    SplitButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

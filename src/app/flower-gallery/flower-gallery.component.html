@@ -1,54 +1,69 @@
 <br />
 <div class="card">
-    <p-dataView #dv [value]="flowers" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
-        [sortOrder]="sortOrder" layout="grid">
+
+
+
+    <p-dataView #dv [value]="filteredFlowers" [paginator]="true" [rows]="9" filterBy="name" layout="grid">
         <ng-template pTemplate="header">
             <div class="flex flex-column md:flex-row md:justify-content-between">
-                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-                    styleClass="mb-2 md:mb-0"></p-dropdown>
+                <div>
+                    <span>Filter By Flower Color: </span>
+                    <p-dropdown placeholder="Select a Color" [options]="listColor" [(ngModel)]="selectedFlowerColor"
+                        (onChange)="onChangeFlowerFilter($event)" defaultLabel="Select Flower Color2">
+                    </p-dropdown>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>Filter By Flower Type: </span>
+                    <p-dropdown placeholder="Select a Type" [options]="listType" [(ngModel)]="selectedFlowerType"
+                        (onChange)="onChangeFlowerFilter($event)" defaultLabel="Select Flower Color2">
+                    </p-dropdown>
+                </div>
                 <span class="p-input-icon-left mb-2 md:mb-0">
                     <i class="pi pi-search"></i>
                     <input type="search" pInputText placeholder="Search by Name"
-                        (input)="applyFilterGlobal($event, dv)">
+                        (input)="dv.filter($any($event.target).value, 'contains')">
                 </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+
             </div>
         </ng-template>
-        <ng-template let-flower pTemplate="gridItem">
-            <div class="p-col-12 md:col-4">
+        <ng-template let-flower pTemplate="gridItem" columns="4">
+            <div class="col-12 md:col-3">
                 <div class="flower-grid-item card">
                     <div class="flower-grid-item-top">
                         <div>
-                            <span class="flower-category">{{flower.color}}</span>
+                            <span id="flowerColorText" class="flower-color">{{flower.flowerColor}}</span>
+                            <div class="flower-type">{{flower.flowerType.name}}</div>
                         </div>
                     </div>
+                    <br />
                     <div class="flower-grid-item-content">
                         <img [src]="'http://localhost:8080/BouquetStorySystem-war/' + flower.imgAddress" />
+                        <br />
                         <div class="flower-name">{{flower.name}}</div>
+                        <br />
+
                         <div class="flower-description">{{flower.description}}</div>
                     </div>
-                    <div class="flower-grid-item-bottom">
+                    <!-- <div class="flower-grid-item-bottom">
                         <span class="flower-price">${{flower.unitPrice}}</span>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </ng-template>
         <ng-template pTemplate="footer">Test Footer</ng-template>
     </p-dataView>
 
-
-    <!-- <p-table [value]="flowers">
+    <p-table [value]="allFlowerTypes">
         <ng-template pTemplate="header">
             <tr>
-                <th>Flower ID</th>
-                <th>Flower Name</th>
+                <th>Flower Type ID</th>
+                <th>Flower Type Name</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-flower>
+        <ng-template pTemplate="body" let-flowerType>
             <tr>
-                <td>{{flower.flowerId}}</td>
-                <td>{{flower.name}}</td>
+                <td>{{flowerType.flowerTypeId}}</td>
+                <td>{{flowerType.name}}</td>
             </tr>
         </ng-template>
-    </p-table> -->
+    </p-table>
 </div>
