@@ -1,1 +1,89 @@
-<p>my-credit-cards works!</p>
+<br />
+<div class="card2">
+    <section class="col-2" id="navSectionLeft">
+        <h2>My Account</h2>
+        <div>
+            <p-menu class="menu" [model]="profileMenuItems"></p-menu>
+        </div>
+        <br />
+        <h2>My Orders</h2>
+        <div>
+            <p-menu class="menu" [model]="myOrderMenuItems"></p-menu>
+        </div>
+    </section>
+    <section class="col-9" id="ordersSectionRight">
+        <div class="cardMyProfile">
+            <h2>My Credit Cards</h2>
+            <p-toast></p-toast>
+
+                <p-toolbar styleClass="mb-4">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt [value]="creditCards!" [rows]="10" [paginator]="true" responsiveLayout="scroll"
+                   [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                            <h5 class="m-0">Manage Credit Cards</h5>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="cardNo">Credit Card Number <p-sortIcon field="cardNo"></p-sortIcon></th>
+                            <th pSortableColumn="holderName">Card Holder Name <p-sortIcon field="holderName"></p-sortIcon></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-creditCard>
+                        <tr>
+                            <td>{{creditCard.ccNum}}</td>
+                            <td>{{creditCard.ccHolderName}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCreditCard(creditCard)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-between">
+                            In total there are {{creditCards ? creditCards.length : 0 }} credit cards.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+    </section>
+</div>
+
+<p-dialog [(visible)]="creditCardDialog" [style]="{width: '450px'}" header="Credit Card Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="description">Credit Card Number</label>
+            <input  type="text" id="description" pInputText [(ngModel)]="creditCard.ccNum" required autofocus />
+            <small class="p-error" *ngIf="submitted && !creditCard.ccNum">Credit card number is required.</small>
+        </div>
+        <div class="field">
+            <label for="name">Card Holder Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="creditCard.ccHolderName" required autofocus />
+            <small class="p-error" *ngIf="submitted && !creditCard.ccHolderName">Holder name is required.</small>
+        </div>
+        <div class="field">
+            <label for="year">Expiry Year</label>
+            <input type="text" pInputText id="year" [(ngModel)]="creditCard.ccExpiryYear" required autofocus />
+            <small class="p-error" *ngIf="submitted && !creditCard.ccExpiryYear">Expiry year is required.</small>
+        </div>
+        <div class="field">
+            <label for="month">Expiry Month</label>
+            <input type="text" pInputText id="month" [(ngModel)]="creditCard.ccExpiryMonth" required autofocus />
+            <small class="p-error" *ngIf="submitted && !creditCard.ccExpiryMonth">Expiry month is required.</small>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addCreditCard()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
