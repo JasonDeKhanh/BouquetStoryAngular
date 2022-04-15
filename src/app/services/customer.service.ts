@@ -41,7 +41,15 @@ export class CustomerService {
 
     updateCustomer(newCustomer: RegisteredGuest): Observable<RegisteredGuest>
     {
-      return this.httpClient.post<RegisteredGuest>(this.baseUrl, newCustomer, httpOptions).pipe
+      return this.httpClient.post<RegisteredGuest>(this.baseUrl + "/updateCustomer", newCustomer, httpOptions).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
+
+    updatePassword(newCustomer: RegisteredGuest): Observable<RegisteredGuest>
+    {
+      return this.httpClient.post<RegisteredGuest>(this.baseUrl + "/updatePassword", newCustomer, httpOptions).pipe
       (
         catchError(this.handleError)
       );
