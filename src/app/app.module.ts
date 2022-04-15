@@ -30,6 +30,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MyAddressesComponent } from './my-addresses/my-addresses.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MyAddressesComponent } from './my-addresses/my-addresses.component';
     MyProfileComponent,
     MyOrdersComponent,
     MyAddressesComponent,
+    AccessRightErrorComponent,
   ],
   imports: [
     BrowserModule,

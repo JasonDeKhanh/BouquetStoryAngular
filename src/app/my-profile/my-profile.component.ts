@@ -5,6 +5,7 @@ import { CreditCard } from '../models/credit-card';
 import { RegisteredGuest } from '../models/registered-guest';
 import { CustomerService } from '../services/customer.service';
 import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-profile',
@@ -24,8 +25,9 @@ export class MyProfileComponent implements OnInit {
   profileMenuItems: MenuItem[];
   myOrderMenuItems: MenuItem[];
 
-  constructor(public sessionService: SessionService,
-    private customerService: CustomerService) {
+  constructor(private router: Router,
+              public sessionService: SessionService,
+              private customerService: CustomerService) {
     this.currentCustomer = sessionService.getCurrentCustomer();
     this.registerError = false;
     this.registerSuccess = false;
@@ -35,6 +37,8 @@ export class MyProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.checkAccessRight();
 
     this.profileMenuItems = [
       {
@@ -56,6 +60,7 @@ export class MyProfileComponent implements OnInit {
         routerLink: ["/myOrders"]
       }
     ];
+    
 
   }
 
@@ -118,4 +123,12 @@ export class MyProfileComponent implements OnInit {
       }
     }
   }
+
+  checkAccessRight()
+	{
+		if(!this.sessionService.checkAccessRight(this.router.url))
+		{
+			this.router.navigate(["/accessRightError"]);
+		}
+	}
 }
