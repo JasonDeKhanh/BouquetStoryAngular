@@ -1,1 +1,64 @@
-<p>shopping-cart works!</p>
+<br />
+<div class="card">
+    <h2>Shopping Cart</h2>
+    <!-- <p-toast></p-toast> -->
+
+    <!-- <div class="card"> -->
+
+    <p-table #dt [value]="saleTransactionLineItems!" [rows]="10" responsiveLayout="scroll" [rowHover]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <!-- <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage Addresses</h5>
+            </div>
+        </ng-template> -->
+        <ng-template pTemplate="header">
+            <tr>
+                <th>
+                    SN
+                </th>
+                <th>
+                    Item Id
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    Unit Price
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Subtotal
+                </th>
+
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lineItem>
+            <tr>
+                <td>{{lineItem?.serialNumer}}</td>
+                <td>{{lineItem?.item?.itemId}}</td>
+                <td>item image</td>
+                <td>item name somehow</td>
+                <td>{{lineItem?.unitPrice}}</td>
+                <td>{{lineItem?.quantity}}</td>
+                <td>
+                    <script>lineItem.quantity * lineItem.unitPrice</script>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <!-- <div class="flex align-items-center justify-content-between">
+                    In total there are {{addresses ? addresses.length : 0 }} addresses.
+                </div> -->
+        </ng-template>
+    </p-table>
+</div>

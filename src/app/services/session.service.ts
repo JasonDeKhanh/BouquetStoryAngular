@@ -51,7 +51,7 @@ export class SessionService {
   }
 
   getCartLineItems(): SaleTransactionLineItem[] {
-    return sessionStorage['cartLineItems'];
+    return sessionStorage['cartLineItems'] ? JSON.parse(sessionStorage['cartLineItems']) : new Array();
   }
 
   setCartLineItems(cartLineItems: SaleTransactionLineItem[]): void {

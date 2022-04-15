@@ -8,6 +8,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MyAddressesComponent } from './my-addresses/my-addresses.component';
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'myOrders', component: MyOrdersComponent },
   { path: 'myAddresses', component: MyAddressesComponent },
   { path: 'accessRightError', component: AccessRightErrorComponent },
+  { path: 'shoppingCart', component: ShoppingCartComponent },
 ];
 
 @NgModule({

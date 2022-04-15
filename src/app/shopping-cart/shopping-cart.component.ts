@@ -12,6 +12,7 @@ import { SessionService } from '../services/session.service';
 })
 export class ShoppingCartComponent implements OnInit {
 
+  saleTransactionLineItems: SaleTransactionLineItem[];
   totalLineItem: number;
   totalQuantity: number;
   totalPriceAmount: number;
@@ -30,10 +31,21 @@ export class ShoppingCartComponent implements OnInit {
     this.deliveryAddress = "";
     this.isPreorder = false;
 
+    this.saleTransactionLineItems = new Array();
 
   }
 
   ngOnInit(): void {
+    this.saleTransactionLineItems = this.sessionService.getCartLineItems();
+
+    this.totalLineItem = this.saleTransactionLineItems.length;
+    for (var lineItem of this.saleTransactionLineItems) {
+      this.totalQuantity += lineItem.quantity ? lineItem.quantity : 0;
+      this.totalPriceAmount += (lineItem.quantity && lineItem.unitPrice) ? lineItem.unitPrice * lineItem.quantity : 0;
+    }
+
+    console.log("line items: " + this.saleTransactionLineItems.toString());
+    console.log("lineItem[0]: " + this.saleTransactionLineItems[0]?.item?.itemId);
   }
 
 }

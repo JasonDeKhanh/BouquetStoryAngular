@@ -4,12 +4,18 @@
 
     <p-menubar styleClass="main-menubar" [model]="items">
         <!-- <p-messages [(value)]="msgs"></p-messages> -->
-        <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == false">
 
-            <button type="button" pButton pRipple label="Login" (click)="showLoginDialog()"></button>
-            &nbsp;
-            <button pButton pRipple type="button" routerLink="/registerNewCustomer" (click)="showRegisterDialog()"
-                label="Register" class="p-button-text p-button-plain"></button>
+        <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == false">
+            <div class="flex">
+                <button type="button" pButton pRipple icon="pi pi-fw pi-shopping-cart" label="Shopping Cart"
+                    class="p-button-text p-button-plain" [routerLink]="'/shoppingCart'"></button>
+
+                <p-divider layout="vertical"></p-divider>
+                <button type="button" pButton pRipple label="Login" (click)="showLoginDialog()"></button>
+                &nbsp;
+                <button pButton pRipple type="button" routerLink="/registerNewCustomer" (click)="showRegisterDialog()"
+                    label="Register" class="p-button-text p-button-plain"></button>
+            </div>
 
             <form name="loginForm" ngNativeValidate>
                 <p-dialog header="Login" [(visible)]="displayLoginDialog">
@@ -77,6 +83,10 @@
         <ng-template pTemplate="end" *ngIf="sessionService.getIsLogin() == true">
             <!-- <label for="btn"> You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} </label>
             &nbsp; -->
+            <button type="button" pButton pRipple icon="pi pi-fw pi-shopping-cart" label="Shopping Cart"
+                class="p-button-text p-button-plain" [routerLink]="'/shoppingCart'"></button>
+
+            <!-- <p-divider layout="vertical"></p-divider> -->
             <button type="button" pButton pRipple icon="pi pi-fw pi-user"
                 label="{{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}}"
                 class="p-button-text p-button-plain" (click)="menu.toggle($event)"></button>
