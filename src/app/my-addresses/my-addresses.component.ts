@@ -26,8 +26,8 @@ export class MyAddressesComponent implements OnInit {
   addressDialog: boolean; //selectedAddresses
   addresses : Address[] | undefined;
   address: Address = new Address();
-  selectedAddresses : Address[] | undefined;
   submitted: boolean = false;
+  updateAddressDialog: boolean = false;
 
 
   constructor(private router: Router,
@@ -112,12 +112,44 @@ export class MyAddressesComponent implements OnInit {
   }
 
 editAddress(address: Address){
-
+  this.address = {...address};
+  this.updateAddressDialog = true;
 }
 
 hideDialog() {
   this.addressDialog = false;
   this.submitted = false;
+}
+
+updateAddress(){
+  this.submitted = true;
+
+  if(this.address.line!="" && this.address.postCode!="") {
+    this.addressService.updateAddress(this.address).subscribe({
+      next: (response) => {
+          this.messageService.add({severity:'success', summary: 'Successful', detail: 'Address Added', life: 3000});
+          this.address = new Address();
+          this.submitted = false;
+
+          this.addressService.getAddresses(this.sessionService.getUsername()).subscribe({
+            next:(response)=>{
+              this.addresses = response;
+            },
+            error:(error)=>{
+              console.log('********** ViewAllAddress.ts: ' + error);
+            }
+          });
+
+          this.updateAddressDialog = false;
+      },
+      error: (error) => {
+          //   this.message = "An error has occurred while registering new account: \n" + error;
+          // this.message = "This email is already registered as a customer!";
+
+          console.log('********** RegisterNewAccount.ts: ' + error);
+      }
+  })
+  }
 }
 
 addAddress(){
