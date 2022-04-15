@@ -39,6 +39,14 @@ export class CustomerService {
       );
     }
 
+    updateCustomer(newCustomer: RegisteredGuest): Observable<RegisteredGuest>
+    {
+      return this.httpClient.post<RegisteredGuest>(this.baseUrl, newCustomer, httpOptions).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
+
 
     private handleError(error: HttpErrorResponse)
     {

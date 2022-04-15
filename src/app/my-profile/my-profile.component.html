@@ -1,0 +1,78 @@
+<br/>
+<div class="card">
+    <h2>My Account Information</h2>
+    <div>
+        <!-- <div class="field">
+            <label for="username" class="block">Email</label>
+            <input id="username" type="input"  size="30" required pInputText disabled [(ngModel)]="currentCustomer.email" />
+        </div>
+        <div class="field">
+            <label for="firstName" class="block">First Name</label>
+            <input id="firstName" type="input"  size="30" required pInputText disabled [(ngModel)]="currentCustomer.firstName" />
+        </div>
+        <div class="field">
+            <label for="lastName" class="block">Last Name</label>
+            <input id="lastName" type="input"  size="30" required pInputText disabled [(ngModel)]="currentCustomer.lastName" />
+        </div> -->
+        <!-- <div class="field">
+            <label for="password" class="block">Password</label>
+            <input id="password" minlength="8" type="input"  size="30" pInputText [disabled]="isReadOnly" [(ngModel)]="currentCustomer.password" placeholder="********"/>
+        </div> -->
+        <div class="grid p-fluid">
+            <div class="col-12 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                    <input type="text" pInputText placeholder="Username" readonly value={{currentCustomer.email}}>         
+                </div>
+            </div>
+            
+            <div class="col-12 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input type="text" pInputText placeholder="Price" readonly value="{{currentCustomer.firstName}} {{currentCustomer.lastName}}">    
+                </div>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <button pButton pRipple label="edit" (click)="editProfile()" ></button>
+            </div>
+        </div>
+
+        <form name="registerForm" ngNativeValidate>
+            <p-dialog header="Register" [(visible)]="displayUpdateDialog">
+
+                <div *ngIf="registerError == true" style="text-align: center; color: red;">
+                    {{message}}
+                </div>
+                <div *ngIf="registerSuccess == true" style="text-align: center; color: green;">
+                    {{message}}
+                </div>
+
+                <label for="email" style="margin-right: 45px;">Email</label>
+                <input type="email" size="25" pInputText value={{currentCustomer.email}} name="email" id="email" disabled>
+                <br /><br />
+                
+                <label for="firstName" style="margin-right: 10px;">First Name</label>
+                <input type="text" size="25" pInputText placeholder="Enter First Name" [(ngModel)]="currentCustomer.firstName" name="firstName" id="firstName" required>
+                <br /><br />
+                
+                <label for="lastName" style="margin-right: 10px;">Last Name</label>
+                <input type="text" size="25" pInputText placeholder="Enter Last Name" [(ngModel)]="currentCustomer.lastName" name="lastName" id="lastName" required>
+                <br /><br />
+<!--                 
+                <label for="psw" style="margin-right: 15px;">Password</label>
+                <input type="text" size="25" pInputText placeholder="Enter Password" minlength="8" [(ngModel)]="currentCustomer.password" name="psw" id="psw" placeholder="********">
+                <br /><br /> -->
+                
+                <div style="margin-left: 23%;">
+                    <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="submit" value="Submit" pButton pRipple class="registerbtn"
+                        (click)="updateCustomer()" label="Register"></button>
+                </div>
+            </p-dialog>
+        </form>
+        
+    </div>
+</div>
+

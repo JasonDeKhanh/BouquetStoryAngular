@@ -94,7 +94,8 @@ export class HeaderComponent implements OnInit {
         
         this.userItems = [
             {
-                label: 'My Profile'
+                label: 'My Profile',
+                routerLink: ["/myProfile"]
 
             },
             {

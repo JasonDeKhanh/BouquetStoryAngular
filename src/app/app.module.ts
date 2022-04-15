@@ -27,6 +27,7 @@ import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
 import { AllBundlesComponent } from './all-bundles/all-bundles.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     HeaderComponent,
     FlowerGalleryComponent,
     AllAddOnsComponent,
-    AllBundlesComponent
+    AllBundlesComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
