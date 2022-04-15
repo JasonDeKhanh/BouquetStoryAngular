@@ -27,6 +27,7 @@
         </ng-template>
         <ng-template let-flower pTemplate="gridItem" columns="4">
             <div class="col-12 md:col-3">
+                <br />
                 <div class="flower-grid-item card">
                     <div class="flower-grid-item-top">
                         <div>
@@ -49,10 +50,10 @@
                 </div>
             </div>
         </ng-template>
-        <ng-template pTemplate="footer">Test Footer</ng-template>
+        <ng-template pTemplate="footer">&nbsp;</ng-template>
     </p-dataView>
 
-    <p-table [value]="allFlowerTypes">
+    <!-- <p-table [value]="allFlowerTypes">
         <ng-template pTemplate="header">
             <tr>
                 <th>Flower Type ID</th>
@@ -65,5 +66,5 @@
                 <td>{{flowerType.name}}</td>
             </tr>
         </ng-template>
-    </p-table>
+    </p-table> -->
 </div>

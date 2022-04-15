@@ -30,8 +30,8 @@ export class HeaderComponent implements OnInit {
     displayRegisterDialog: boolean = false;
 
     constructor(private router: Router,
-                public sessionService: SessionService,
-                private customerService: CustomerService,) {
+        public sessionService: SessionService,
+        private customerService: CustomerService,) {
 
         this.items = new Array();
         this.userItems = new Array();
@@ -91,12 +91,20 @@ export class HeaderComponent implements OnInit {
                 ],
             },
         ]; // end of items
-        
+
         this.userItems = [
             {
                 label: 'My Profile',
                 routerLink: ["/myProfile"]
 
+            },
+            {
+                label: 'My Orders',
+                routerLink: ["/myOrders"]
+
+            },
+            {
+                separator: true
             },
             {
                 label: 'Logout',
@@ -106,30 +114,27 @@ export class HeaderComponent implements OnInit {
         ]
     }
 
-    customerLogin(): void
-    {
-        if(this.username != null && this.password != null) {
+    customerLogin(): void {
+        if (this.username != null && this.password != null) {
 
             this.sessionService.setUsername(this.username);
             this.sessionService.setPassword(this.password);
-                        
+
             this.customerService.customerLogin(this.username, this.password).subscribe({
-                next:(response)=>{
+                next: (response) => {
                     let customer: RegisteredGuest = response;
-    
-                    if(customer != null)
-                    {
+
+                    if (customer != null) {
                         this.sessionService.setIsLogin(true);
-                        this.sessionService.setCurrentCustomer(customer);					
-                        this.loginError = false;	
-                        window.location.reload();			                    					
+                        this.sessionService.setCurrentCustomer(customer);
+                        this.loginError = false;
+                        window.location.reload();
                     }
-                    else
-                    {
+                    else {
                         this.loginError = true;
                     }
                 },
-                error:(error)=>{
+                error: (error) => {
                     this.loginError = true;
                     this.errorMessage = "You have entered wrong email or password!"
                 }
@@ -137,40 +142,39 @@ export class HeaderComponent implements OnInit {
         }
     }
 
-    customerLogout(): void
-    {
+    customerLogout(): void {
         this.sessionService.setIsLogin(false);
         this.sessionService.setCurrentCustomer(null);
         window.location.reload();
         this.router.navigate(["/index"]);
     }
 
-    registerNewCustomer(){
+    registerNewCustomer() {
         let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-        
-        var  isEmailValid:boolean = regexp.test(this.newCustomer.email!);
-        
-        if(this.newCustomer.firstName!=null && this.newCustomer.lastName!=null &&
-            this.newCustomer.email!=null && this.newCustomer.password!=null && isEmailValid) {
-          this.customerService.createNewCustomer(this.newCustomer).subscribe({
-            next:(response) => {
-              this.registerSuccess = true;
-              this.registerError = false;
-              this.message = "You have successfully registered a new account!";
-              this.newCustomer = new RegisteredGuest();
-            },
-            error:(error) =>{
-              this.registerError = true;
-              this.registerSuccess = false;
-            //   this.message = "An error has occurred while registering new account: \n" + error;
-              this.message = "This email is already registered as a customer!";
-              
-              console.log('********** RegisterNewAccount.ts: ' + error);
-            }
-          })
+
+        var isEmailValid: boolean = regexp.test(this.newCustomer.email!);
+
+        if (this.newCustomer.firstName != null && this.newCustomer.lastName != null &&
+            this.newCustomer.email != null && this.newCustomer.password != null && isEmailValid) {
+            this.customerService.createNewCustomer(this.newCustomer).subscribe({
+                next: (response) => {
+                    this.registerSuccess = true;
+                    this.registerError = false;
+                    this.message = "You have successfully registered a new account!";
+                    this.newCustomer = new RegisteredGuest();
+                },
+                error: (error) => {
+                    this.registerError = true;
+                    this.registerSuccess = false;
+                    //   this.message = "An error has occurred while registering new account: \n" + error;
+                    this.message = "This email is already registered as a customer!";
+
+                    console.log('********** RegisterNewAccount.ts: ' + error);
+                }
+            })
         }
-        
-      }
+
+    }
 
     showLoginDialog() {
         this.displayLoginDialog = true;
@@ -179,7 +183,7 @@ export class HeaderComponent implements OnInit {
         this.username = undefined;
         this.password = undefined;
     }
-    showRegisterDialog(){
+    showRegisterDialog() {
         this.displayRegisterDialog = true;
         this.displayLoginDialog = false;
         this.registerSuccess = false;
