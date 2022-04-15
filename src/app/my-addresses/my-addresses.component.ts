@@ -66,7 +66,8 @@ export class MyAddressesComponent implements OnInit {
         routerLink: ["/myAddresses"]
       },
       {
-        label: 'My Credit Cards'
+        label: 'My Credit Cards',
+        routerLink: ["/myCreditCards"]
       }
     ];
 
