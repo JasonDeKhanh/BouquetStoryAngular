@@ -37,13 +37,12 @@
                             <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-address>
+                    <ng-template pTemplate="body" let-creditCard>
                         <tr>
-                            <td>{{address.line}}</td>
-                            <td>{{address.postCode}}</td>
+                            <td>{{creditCard.ccNum}}</td>
+                            <td>{{creditCard.ccHolderName}}</td>
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editCreditCard(address)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCreditCard(address)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCreditCard(creditCard)"></button>
                             </td>
                         </tr>
                     </ng-template>
