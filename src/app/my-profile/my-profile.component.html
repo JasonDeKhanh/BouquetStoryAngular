@@ -34,12 +34,16 @@
             </div>
 
             <div class="col-12 md:col-2">
-                <button pButton pRipple label="edit" (click)="editProfile()" ></button>
+                <button pButton pRipple label="Edit Profile" (click)="editProfile()" ></button>
+            </div>
+
+            <div class="col-12 md:col-2">
+                <button pButton pRipple label="Change Password" (click)="changePassword()" ></button>
             </div>
         </div>
 
-        <form name="registerForm" ngNativeValidate>
-            <p-dialog header="Register" [(visible)]="displayUpdateDialog">
+        <form name="editProfileForm" ngNativeValidate>
+            <p-dialog header="Update Profile" [(visible)]="displayUpdateDialog">
 
                 <div *ngIf="registerError == true" style="text-align: center; color: red;">
                     {{message}}
@@ -59,16 +63,35 @@
                 <label for="lastName" style="margin-right: 10px;">Last Name</label>
                 <input type="text" size="25" pInputText placeholder="Enter Last Name" [(ngModel)]="currentCustomer.lastName" name="lastName" id="lastName" required>
                 <br /><br />
-<!--                 
-                <label for="psw" style="margin-right: 15px;">Password</label>
-                <input type="text" size="25" pInputText placeholder="Enter Password" minlength="8" [(ngModel)]="currentCustomer.password" name="psw" id="psw" placeholder="********">
-                <br /><br /> -->
                 
-                <div style="margin-left: 23%;">
-                    <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button>
+                <div style="margin-left: 25%;">
+                    <!-- <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> -->
                     &nbsp;&nbsp;&nbsp;
                     <button type="submit" value="Submit" pButton pRipple class="registerbtn"
-                        (click)="updateCustomer()" label="Register"></button>
+                        (click)="updateCustomer()" label=" Update Profile "></button>
+                </div>
+            </p-dialog>
+        </form>
+
+        <form name="editProfileForm" ngNativeValidate>
+            <p-dialog header="Change Password" [(visible)]="displayPasswordDialog">
+
+                <div *ngIf="registerError == true" style="text-align: center; color: red;">
+                    {{message}}
+                </div>
+                <div *ngIf="registerSuccess == true" style="text-align: center; color: green;">
+                    {{message}}
+                </div>
+
+                <label for="psw" style="margin-right: 15px;">Password</label>
+                <input type="text" size="25" pInputText placeholder="Enter new Password" [(ngModel)]="newPassword" name="psw" id="psw" minlength="8" required>
+                <br /><br />
+
+                <div style="margin-left: 22%;">
+                    <!-- <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> -->
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="submit" value="Submit" pButton pRipple class="registerbtn"
+                        (click)="updatePassword()" label=" Change Password "></button>
                 </div>
             </p-dialog>
         </form>

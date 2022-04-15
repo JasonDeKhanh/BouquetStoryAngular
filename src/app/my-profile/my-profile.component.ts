@@ -14,9 +14,11 @@ export class MyProfileComponent implements OnInit {
   currentCustomer: RegisteredGuest = new RegisteredGuest();
 
   displayUpdateDialog : boolean = false;
+  displayPasswordDialog : boolean = false;
   registerSuccess: boolean;
   registerError: boolean;
   message: string | undefined;
+  newPassword: string | undefined;
 
   constructor(public sessionService: SessionService,
               private customerService: CustomerService) {
@@ -31,22 +33,22 @@ export class MyProfileComponent implements OnInit {
   }
 
   editProfile(){
+    this.message = "";
+    this.registerSuccess = false;
+    this.registerError = false;
     this.displayUpdateDialog = true;
   }
 
+  
+  changePassword(){
+    this.message = "";
+    this.displayPasswordDialog = true;
+  }
+
   updateCustomer(){ 
-    let passwordValid : boolean = true;
-    if(this.currentCustomer.password != undefined && this.currentCustomer.password != "") {
-      if(this.currentCustomer.password.length < 8)
-        passwordValid = false;
-    }
-
-    if(this.currentCustomer.password == undefined || this.currentCustomer.password == "") {
-      this.currentCustomer.password = "";
-    }
-
+    
     if(this.currentCustomer.firstName!=null && this.currentCustomer.lastName!=null && 
-        this.currentCustomer.email!=null && passwordValid) {
+        this.currentCustomer.email!=null) {
       this.customerService.updateCustomer(this.currentCustomer).subscribe({
         next:(response) => {
           this.registerSuccess = true;
@@ -69,4 +71,26 @@ export class MyProfileComponent implements OnInit {
 
   }
 
+  updatePassword(){
+    if(this.newPassword != undefined && this.newPassword != "") {
+      if(this.newPassword.length > 8) {
+        this.currentCustomer.password = this.newPassword;
+        this.customerService.updatePassword(this.currentCustomer).subscribe({
+          next:(response) => {
+            this.registerSuccess = true;
+            this.registerError = false;
+            this.message = "You have successfully change your password!";
+          },
+          error:(error) =>{
+            this.registerError = true;
+            this.registerSuccess = false;
+          //   this.message = "An error has occurred while registering new account: \n" + error;
+            this.message = "An unexpected error occured during update!";
+            
+            console.log('********** UpdatePassword.ts: ' + error);
+          }
+        })
+      }
+    }
+  }
 }
