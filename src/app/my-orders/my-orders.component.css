@@ -7,7 +7,27 @@
     margin-right: 5%;
     background-color: white;
     display: flex;
-    justify-content: space-between;
+    align-content: center;
+    /* justify-content: center; */
+    /* align-content: space-between; */
+}
+
+.navSectionLeft {
+    /* padding-right: 100px;
+    margin-right: 100px; */
+}
+
+.ordersSectionRight {
+    /* margin: 100px; */
+}
+
+.card .navSectionLeft .p-menu{
+    width:20%;
+    background-color: red;
+}
+
+.card .navSectionLeft .p-menu-list {
+    background-color: red;
 }
 
 .cardMyOrders {
@@ -17,9 +37,9 @@
     box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     margin-bottom: 2rem;
-    margin-left: 5%;
-    margin-right: 5%;
+    /* margin-left: 5%;
+    margin-right: 5%; */
     background-color: white;
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
 }
