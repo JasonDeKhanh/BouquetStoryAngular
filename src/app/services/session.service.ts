@@ -57,4 +57,23 @@ export class SessionService {
   setCartLineItems(cartLineItems: SaleTransactionLineItem[]): void {
     sessionStorage['cartLineItems'] = JSON.stringify(cartLineItems);
   }
+
+  checkAccessRight(path: string): boolean {
+    console.log("********** path: " + path);
+
+    if (this.getIsLogin()) {
+      if (path == "/myProfile" ||
+        path == "/myAddresses" ||
+        path == "/myCreditCards" ||
+        path == "/myOrders") {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
 }

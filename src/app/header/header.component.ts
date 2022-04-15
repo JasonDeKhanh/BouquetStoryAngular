@@ -128,6 +128,8 @@ export class HeaderComponent implements OnInit {
                         this.sessionService.setIsLogin(true);
                         this.sessionService.setCurrentCustomer(customer);
                         this.loginError = false;
+                        
+                        this.router.navigate(["/index"]);
                         window.location.reload();
                     }
                     else {

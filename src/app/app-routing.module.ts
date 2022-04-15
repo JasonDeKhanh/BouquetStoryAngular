@@ -7,6 +7,7 @@ import { AllBundlesComponent } from './all-bundles/all-bundles.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MyAddressesComponent } from './my-addresses/my-addresses.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'myProfile', component: MyProfileComponent },
   { path: 'myOrders', component: MyOrdersComponent },
   { path: 'myAddresses', component: MyAddressesComponent },
-
+  { path: 'accessRightError', component: AccessRightErrorComponent },
 ];
 
 @NgModule({

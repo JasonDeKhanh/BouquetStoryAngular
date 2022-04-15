@@ -20,7 +20,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { DropdownModule } from 'primeng/dropdown';
-import { DialogModule } from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog'; //p-confirmDialog
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
 import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
@@ -31,6 +31,12 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MyAddressesComponent } from './my-addresses/my-addresses.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
+import { MyCreditCardsComponent } from './my-credit-cards/my-credit-cards.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+// import { ConfirmationService } from 'primeng/api';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -44,6 +50,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     MyOrdersComponent,
     MyAddressesComponent,
     ShoppingCartComponent,
+    AccessRightErrorComponent,
+    MyCreditCardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +72,10 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     MenuModule,
     MultiSelectModule,
     SplitButtonModule,
+    ConfirmDialogModule,
+    // ConfirmationService,
+    ToolbarModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
