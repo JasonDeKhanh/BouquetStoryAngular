@@ -6,55 +6,53 @@ import { catchError } from 'rxjs/operators';
 import { SessionService } from '../services/session.service';
 import { Customer } from '../models/customer';
 import { RegisteredGuest } from '../models/registered-guest';
-
+import { Address } from '../models/address';
+import { AddressReq } from '../models/address-req';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
+export class AddressService {
+  baseUrl: string = "/api/Address";
 
-export class CustomerService {
-  baseUrl: string = "/api/Customer";
+  constructor(private httpClient: HttpClient,
+              public sessionService: SessionService,) { }
 
-  constructor(private httpClient: HttpClient) { }
-
-  createNewCustomer(newCustomer: RegisteredGuest): Observable<number>
-  {		
-  
-    return this.httpClient.put<number>(this.baseUrl, newCustomer, httpOptions).pipe
+  createNewAddress(newAddress: Address){
+    let addressReq : AddressReq = new AddressReq(newAddress, this.sessionService.getUsername());
+    return this.httpClient.put<number>(this.baseUrl, addressReq, httpOptions).pipe
     (
       catchError(this.handleError)
     );
   }
 
-  customerLogin(username: string | undefined, password: string | undefined): Observable<RegisteredGuest>
+  getAddresses(username: string | undefined): Observable<Address[]> {
+    return this.httpClient.get<Address[]>(this.baseUrl + "/retrieveAllAddresses?username="+username).pipe
+        (
+            catchError(this.handleError)
+        );
+  }
+
+  updateAddress(updatedAddree: Address): Observable<RegisteredGuest>
   {
-    return this.httpClient.get<RegisteredGuest>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe
+    return this.httpClient.post<RegisteredGuest>(this.baseUrl , updatedAddree, httpOptions).pipe
     (
       catchError(this.handleError)
     );
   }
 
-  updateCustomer(newCustomer: RegisteredGuest): Observable<RegisteredGuest>
+  deleteAddress(deleteAddree: Address): Observable<any>
   {
-    return this.httpClient.post<RegisteredGuest>(this.baseUrl + "/updateCustomer", newCustomer, httpOptions).pipe
+    console.log(this.baseUrl +"/"+deleteAddree.addressId);
+    return this.httpClient.delete<any>(this.baseUrl +"/"+ deleteAddree.addressId).pipe
     (
       catchError(this.handleError)
     );
   }
-
-  updatePassword(newCustomer: RegisteredGuest): Observable<RegisteredGuest>
-  {
-    return this.httpClient.post<RegisteredGuest>(this.baseUrl + "/updatePassword", newCustomer, httpOptions).pipe
-    (
-      catchError(this.handleError)
-    );
-  }
-
 
   private handleError(error: HttpErrorResponse)
   {

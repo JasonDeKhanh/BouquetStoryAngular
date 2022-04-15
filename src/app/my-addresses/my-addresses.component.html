@@ -14,7 +14,81 @@
     <section class="col-9" id="ordersSectionRight">
         <div class="cardMyProfile">
             <h2>My Addresses</h2>
+            <p-toast></p-toast>
 
-        </div>
+            <!-- <div class="card"> -->
+                <p-toolbar styleClass="mb-4">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedAddresses()" [disabled]="!selectedAddresses || !selectedAddresses.length"></button> -->
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt [value]="addresses!" [rows]="10" [paginator]="true" [globalFilterFields]="['addLine','postalCode']" responsiveLayout="scroll"
+                    [(selection)]="selectedAddresses" [rowHover]="true" dataKey="id"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="flex align-items-center justify-content-between">
+                            <h5 class="m-0">Manage Addresses</h5>
+                            <!-- <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                            </span> -->
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th pSortableColumn="addLine">Address Line <p-sortIcon field="addLine"></p-sortIcon></th>
+                            <th pSortableColumn="postalCode">Postal Code <p-sortIcon field="postalCode"></p-sortIcon></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-address>
+                        <tr>
+                            <td>
+                                <p-tableCheckbox [value]="address"></p-tableCheckbox>
+                            </td>
+                            <td>{{address.line}}</td>
+                            <td>{{address.postCode}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editAddress(address)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteAddress(address)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <!-- <div class="flex align-items-center justify-content-between">
+                            In total there are {{addresses ? addresses.length : 0 }} addresses.
+                        </div> -->
+                    </ng-template>
+                </p-table>
+            </div>
+        <!-- </div> -->
     </section>
 </div>
+
+<p-dialog [(visible)]="addressDialog" [style]="{width: '450px'}" header="Address Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="field">
+            <label for="description">Address Line</label>
+            <textarea id="description" pInputText [(ngModel)]="address.line" required rows="3" cols="20"></textarea>
+            <small class="p-error" *ngIf="submitted && !address.line">Address Line is required.</small>
+        </div>
+        <div class="field">
+            <label for="name">Post Code</label>
+            <input type="text" pInputText id="name" [(ngModel)]="address.postCode" required autofocus />
+            <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addAddress()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

@@ -65,7 +65,10 @@ export class SessionService {
 
     if(this.getIsLogin())
     {
-      if(path == "/myProfile")
+      if(path == "/myProfile" || 
+        path == "/myAddresses" ||
+        path == "/myCreditCards" ||
+        path == "/myOrders")
         {
           return true;
         }
