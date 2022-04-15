@@ -98,7 +98,8 @@ export class HeaderComponent implements OnInit {
 
             },
             {
-                label: 'My Orders'
+                label: 'My Orders',
+                routerLink: ["/myOrders"]
 
             },
             {
