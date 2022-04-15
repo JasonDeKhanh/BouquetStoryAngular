@@ -35,6 +35,15 @@ export class MyCreditCardsComponent implements OnInit {
 
       this.profileMenuItems = new Array();
       this.myOrderMenuItems = new Array();
+
+      this.creditCardService.getcreditCards(this.sessionService.getUsername()).subscribe({
+        next:(response)=>{
+          this.creditCards = response;
+        },
+        error:(error)=>{
+          console.log('********** ViewAllAddress.ts: ' + error);
+        }
+      });
     }
 
   ngOnInit(): void {
@@ -62,6 +71,8 @@ export class MyCreditCardsComponent implements OnInit {
         routerLink: ["/myOrders"]
       }
     ];
+
+
   }
 
 
