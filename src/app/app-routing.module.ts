@@ -6,6 +6,7 @@ import { FlowerGalleryComponent } from './flower-gallery/flower-gallery.componen
 import { AllBundlesComponent } from './all-bundles/all-bundles.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { MyAddressesComponent } from './my-addresses/my-addresses.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -14,6 +15,8 @@ const routes: Routes = [
   { path: 'flowerGallery', component: FlowerGalleryComponent },
   { path: 'myProfile', component: MyProfileComponent },
   { path: 'myOrders', component: MyOrdersComponent },
+  { path: 'myAddresses', component: MyAddressesComponent },
+
 ];
 
 @NgModule({

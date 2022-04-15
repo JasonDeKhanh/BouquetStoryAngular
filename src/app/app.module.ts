@@ -29,7 +29,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
-
+import { MyAddressesComponent } from './my-addresses/my-addresses.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +40,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     AllAddOnsComponent,
     AllBundlesComponent,
     MyProfileComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    MyAddressesComponent,
   ],
   imports: [
     BrowserModule,

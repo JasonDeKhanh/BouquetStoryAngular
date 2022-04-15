@@ -20,10 +20,12 @@ export class MyOrdersComponent implements OnInit {
   ngOnInit(): void {
     this.profileMenuItems = [
       {
-        label: 'My Profile'
+        label: 'My Profile',
+        routerLink: ["/myProfile"]
       },
       {
-        label: 'My Addresses'
+        label: 'My Addresses',
+        routerLink: ["/myAddresses"]
       },
       {
         label: 'My Credit Cards'
@@ -32,7 +34,8 @@ export class MyOrdersComponent implements OnInit {
 
     this.myOrderMenuItems = [
       {
-        label: 'My Orders'
+        label: 'My Orders',
+        routerLink: ["/myOrders"]
       }
     ];
   }
