@@ -15,20 +15,28 @@
             </div>
         </ng-template>
         <ng-template let-bundle pTemplate="gridItem">
-            <div class="p-col-12 md:col-4">
+            <div class="p-col-12 md:col-3">
                 <div class="bundle-grid-item card">
                     <div class="bundle-grid-item-top">
-                        <div>
-                            <!-- <span class="bundle-category">{{bundle.color}}</span> -->
+                        <span class="bundle-promotion" *ngIf="bundle.promotion != null">{{bundle.promotion?.name}}
+                            Promotion!</span>
+                        <div class="bundle-promotion-percent" *ngIf="bundle.promotion != null">
+                            {{bundle.promotion?.discountPercent}}% off!
                         </div>
                     </div>
-                    <div class="bundle-grid-item-content">
+                    <br />
+                    <div class=" bundle-grid-item-content">
                         <img [src]="'http://localhost:8080/BouquetStorySystem-war/' + bundle.imgAddress" />
+                        <br />
                         <div class="bundle-name">{{bundle.name}}</div>
                         <!-- <div class="bundle-description">{{bundle.description}}</div> -->
+                        <div class="bundle-price">${{bundle.unitPrice}}</div>
+                        <br />
                     </div>
                     <div class="bundle-grid-item-bottom">
-                        <!-- <span class="bundle-price">${{bundle.unitPrice}}</span> -->
+                        <p-button class="view-more-button">View More</p-button>
+                        &nbsp;&nbsp;&nbsp;
+                        <p-button class="add-to-cart-button">Add to Cart</p-button>
                     </div>
                 </div>
             </div>

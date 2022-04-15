@@ -8,6 +8,11 @@
     background-color: white;
 }
 
+:host ::ng-deep .p-dataview-header {
+    background-color: #f2e8e076;
+    border-radius: 4px;
+}
+
 .flower-name {
     font-size: 1.5rem;
     font-weight: 700;
