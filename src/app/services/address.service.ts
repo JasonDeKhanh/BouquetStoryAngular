@@ -45,13 +45,12 @@ export class AddressService {
     );
   }
 
-  deleteAddress(deleteAddree: Address): Observable<any>
+  deleteAddress(deleteAddree: Address)
   {
     console.log(this.baseUrl +"/"+deleteAddree.addressId);
-    return this.httpClient.delete<any>(this.baseUrl +"/"+ deleteAddree.addressId).pipe
-    (
-      catchError(this.handleError)
-    );
+    return this.httpClient.delete<any>(this.baseUrl +"/"+ deleteAddree.addressId).subscribe(data => {
+      console.log(data);
+    });
   }
 
   private handleError(error: HttpErrorResponse)
