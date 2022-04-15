@@ -4,7 +4,6 @@ import { Address } from '../models/address';
 import { CreditCard } from '../models/credit-card';
 import { RegisteredGuest } from '../models/registered-guest';
 import { CustomerService } from '../services/customer.service';
-
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -111,8 +110,6 @@ export class MyProfileComponent implements OnInit {
             this.registerSuccess = false;
             //   this.message = "An error has occurred while registering new account: \n" + error;
             this.message = "An unexpected error occured during update!";
-
-            console.log('********** UpdatePassword.ts: ' + error);
           }
         })
       }
