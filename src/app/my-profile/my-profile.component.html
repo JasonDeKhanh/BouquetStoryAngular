@@ -1,8 +1,108 @@
-<br/>
-<div class="card">
+<br />
+<br />
+
+<div class="card2">
+    <section class="col-2" id="navSectionLeft">
+        <h2>My Account</h2>
+        <div>
+            <p-menu class="menu" [model]="profileMenuItems"></p-menu>
+        </div>
+        <br />
+        <h2>My Orders</h2>
+        <div>
+            <p-menu class="menu" [model]="myOrderMenuItems"></p-menu>
+        </div>
+    </section>
+    <section class="col-9" id="ordersSectionRight">
+        <div class="cardMyProfile">
+            <h2>My Profile</h2>
+            <div>
+                <p-panel header="Name">
+                    <span>{{currentCustomer.firstName}} {{currentCustomer.lastName}}</span>
+                </p-panel>
+            </div>
+            <br />
+            <div>
+                <p-panel header="Email">
+                    <span>{{currentCustomer.email}}</span>
+                </p-panel>
+            </div>
+            <br />
+            <div class="grid p-fluid">
+                <div class="col-2 md:col-2">
+                    <button pButton pRipple label="Edit Profile" (click)="editProfile()"></button>
+                </div>
+
+                <div class="col-2 md:col-2">
+                    <button pButton pRipple label="Change Password" (click)="changePassword()"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<br />
+
+<form name="editProfileForm" ngNativeValidate>
+    <p-dialog header="Update Profile" [(visible)]="displayUpdateDialog">
+
+        <div *ngIf="registerError == true" style="text-align: center; color: red;">
+            {{message}}
+        </div>
+        <div *ngIf="registerSuccess == true" style="text-align: center; color: green;">
+            {{message}}
+        </div>
+
+        <label for="email" style="margin-right: 45px;">Email</label>
+        <input type="email" size="25" pInputText value={{currentCustomer.email}} name="email" id="email" disabled>
+        <br /><br />
+
+        <label for="firstName" style="margin-right: 10px;">First Name</label>
+        <input type="text" size="25" pInputText placeholder="Enter First Name" [(ngModel)]="currentCustomer.firstName"
+            name="firstName" id="firstName" required>
+        <br /><br />
+
+        <label for="lastName" style="margin-right: 10px;">Last Name</label>
+        <input type="text" size="25" pInputText placeholder="Enter Last Name" [(ngModel)]="currentCustomer.lastName"
+            name="lastName" id="lastName" required>
+        <br /><br />
+
+        <div style="margin-left: 25%;">
+            <!-- <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> -->
+            &nbsp;&nbsp;&nbsp;
+            <button type="submit" value="Submit" pButton pRipple class="registerbtn" (click)="updateCustomer()"
+                label=" Update Profile "></button>
+        </div>
+    </p-dialog>
+</form>
+
+<form name="editProfileForm" ngNativeValidate>
+    <p-dialog header="Change Password" [(visible)]="displayPasswordDialog">
+
+        <div *ngIf="registerError == true" style="text-align: center; color: red;">
+            {{message}}
+        </div>
+        <div *ngIf="registerSuccess == true" style="text-align: center; color: green;">
+            {{message}}
+        </div>
+
+        <label for="psw" style="margin-right: 15px;">Password</label>
+        <input type="text" size="25" pInputText placeholder="Enter new Password" [(ngModel)]="newPassword" name="psw"
+            id="psw" minlength="8" required>
+        <br /><br />
+
+        <div style="margin-left: 22%;">
+            <!-- <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> -->
+            &nbsp;&nbsp;&nbsp;
+            <button type="submit" value="Submit" pButton pRipple class="registerbtn" (click)="updatePassword()"
+                label=" Change Password "></button>
+        </div>
+    </p-dialog>
+</form>
+
+<!-- <div class="card">
     <h2>My Account Information</h2>
-    <div>
-        <!-- <div class="field">
+    <div> -->
+<!-- <div class="field">
             <label for="username" class="block">Email</label>
             <input id="username" type="input"  size="30" required pInputText disabled [(ngModel)]="currentCustomer.email" />
         </div>
@@ -14,31 +114,32 @@
             <label for="lastName" class="block">Last Name</label>
             <input id="lastName" type="input"  size="30" required pInputText disabled [(ngModel)]="currentCustomer.lastName" />
         </div> -->
-        <!-- <div class="field">
+<!-- <div class="field">
             <label for="password" class="block">Password</label>
             <input id="password" minlength="8" type="input"  size="30" pInputText [disabled]="isReadOnly" [(ngModel)]="currentCustomer.password" placeholder="********"/>
         </div> -->
-        <div class="grid p-fluid">
+<!-- <div class="grid p-fluid">
             <div class="col-12 md:col-4">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
-                    <input type="text" pInputText placeholder="Username" readonly value={{currentCustomer.email}}>         
+                    <input type="text" pInputText placeholder="Username" readonly value={{currentCustomer.email}}>
                 </div>
             </div>
-            
+
             <div class="col-12 md:col-4">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                    <input type="text" pInputText placeholder="Price" readonly value="{{currentCustomer.firstName}} {{currentCustomer.lastName}}">    
+                    <input type="text" pInputText placeholder="Price" readonly
+                        value="{{currentCustomer.firstName}} {{currentCustomer.lastName}}">
                 </div>
             </div>
 
             <div class="col-12 md:col-2">
-                <button pButton pRipple label="Edit Profile" (click)="editProfile()" ></button>
+                <button pButton pRipple label="Edit Profile" (click)="editProfile()"></button>
             </div>
 
             <div class="col-12 md:col-2">
-                <button pButton pRipple label="Change Password" (click)="changePassword()" ></button>
+                <button pButton pRipple label="Change Password" (click)="changePassword()"></button>
             </div>
         </div>
 
@@ -53,22 +154,24 @@
                 </div>
 
                 <label for="email" style="margin-right: 45px;">Email</label>
-                <input type="email" size="25" pInputText value={{currentCustomer.email}} name="email" id="email" disabled>
+                <input type="email" size="25" pInputText value={{currentCustomer.email}} name="email" id="email"
+                    disabled>
                 <br /><br />
-                
+
                 <label for="firstName" style="margin-right: 10px;">First Name</label>
-                <input type="text" size="25" pInputText placeholder="Enter First Name" [(ngModel)]="currentCustomer.firstName" name="firstName" id="firstName" required>
+                <input type="text" size="25" pInputText placeholder="Enter First Name"
+                    [(ngModel)]="currentCustomer.firstName" name="firstName" id="firstName" required>
                 <br /><br />
-                
+
                 <label for="lastName" style="margin-right: 10px;">Last Name</label>
-                <input type="text" size="25" pInputText placeholder="Enter Last Name" [(ngModel)]="currentCustomer.lastName" name="lastName" id="lastName" required>
+                <input type="text" size="25" pInputText placeholder="Enter Last Name"
+                    [(ngModel)]="currentCustomer.lastName" name="lastName" id="lastName" required>
                 <br /><br />
-                
+
                 <div style="margin-left: 25%;">
-                    <!-- <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> -->
                     &nbsp;&nbsp;&nbsp;
-                    <button type="submit" value="Submit" pButton pRipple class="registerbtn"
-                        (click)="updateCustomer()" label=" Update Profile "></button>
+                    <button type="submit" value="Submit" pButton pRipple class="registerbtn" (click)="updateCustomer()"
+                        label=" Update Profile "></button>
                 </div>
             </p-dialog>
         </form>
@@ -84,18 +187,17 @@
                 </div>
 
                 <label for="psw" style="margin-right: 15px;">Password</label>
-                <input type="text" size="25" pInputText placeholder="Enter new Password" [(ngModel)]="newPassword" name="psw" id="psw" minlength="8" required>
+                <input type="text" size="25" pInputText placeholder="Enter new Password" [(ngModel)]="newPassword"
+                    name="psw" id="psw" minlength="8" required>
                 <br /><br />
 
                 <div style="margin-left: 22%;">
-                    <!-- <button pButton pRipple type="reset" label="Clear" class="p-button-secondary"></button> -->
                     &nbsp;&nbsp;&nbsp;
-                    <button type="submit" value="Submit" pButton pRipple class="registerbtn"
-                        (click)="updatePassword()" label=" Change Password "></button>
+                    <button type="submit" value="Submit" pButton pRipple class="registerbtn" (click)="updatePassword()"
+                        label=" Change Password "></button>
                 </div>
             </p-dialog>
         </form>
-        
-    </div>
-</div>
 
+    </div>
+</div> -->

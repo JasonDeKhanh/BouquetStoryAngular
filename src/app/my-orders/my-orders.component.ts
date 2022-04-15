@@ -23,9 +23,6 @@ export class MyOrdersComponent implements OnInit {
         label: 'My Profile'
       },
       {
-        label: 'Change Password'
-      },
-      {
         label: 'My Addresses'
       },
       {

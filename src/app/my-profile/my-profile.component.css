@@ -9,3 +9,62 @@
     margin-right: 5%;
     background-color: white;
 }
+
+.card2 {
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+    display: flex;
+    /* align-content: center; */
+    justify-content: center;
+    /* align-content: space-between; */
+}
+
+.navSectionLeft {
+    /* padding-right: 100px;
+    margin-right: 100px; */
+    align-self: flex-end;
+}
+
+.ordersSectionRight {
+    /* margin: 100px; */
+    align-self: flex-end;
+}
+
+.card .navSectionLeft .p-menu{
+    width:20%;
+    background-color: red;
+}
+
+.card .navSectionLeft .p-menu-list {
+    background-color: red;
+}
+
+.cardMyProfile {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    padding-top: 0.5rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    /* margin-left: 5%;
+    margin-right: 5%; */
+    background-color: white;
+    /* display: flex;
+    justify-content: space-between; */
+}
+
+/* CSS doesn't work */
+/* :host ::ng-deep .p-panel-titlebar {
+    background-color: red;
+    padding: 100px;
+}
+
+:host ::ng-deep .name-panel .name-panel-titlebar {
+    background-color: red;
+} */
