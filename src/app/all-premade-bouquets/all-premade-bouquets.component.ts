@@ -96,8 +96,8 @@ export class AllPremadeBouquetsComponent implements OnInit {
 
     if (itemAlreadyAdded === false) {
         console.log("cartLineItems.length?? " + cartLineItems.length)
-        newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, 100);
-        // newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, addon.price);
+        // newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, 100);
+        newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, premadeBouquet.bouquetPrice);
         newLineItem.item = premadeBouquet;
         cartLineItems.push(newLineItem);
         this.sessionService.setCartLineItems(cartLineItems);
