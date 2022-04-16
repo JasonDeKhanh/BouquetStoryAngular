@@ -41,6 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 30px;
 }
 
 .bundle-grid-item .bundle-grid-item-bottom {
@@ -67,6 +68,8 @@
 
 .bundle-grid-item-content > img {
     height: 250px;
+    width: 250px;
+    object-fit: cover;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
