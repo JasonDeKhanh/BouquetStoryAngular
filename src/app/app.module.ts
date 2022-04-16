@@ -39,6 +39,9 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {InputMaskModule} from 'primeng/inputmask';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -80,6 +83,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ToastModule,
     DividerModule,
     InputNumberModule,
+    InputMaskModule,
+    RadioButtonModule,
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

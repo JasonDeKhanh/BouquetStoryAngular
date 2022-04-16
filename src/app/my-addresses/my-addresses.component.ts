@@ -119,6 +119,7 @@ editAddress(address: Address){
 
 hideDialog() {
   this.addressDialog = false;
+  this.updateAddressDialog = false;
   this.submitted = false;
 }
 
