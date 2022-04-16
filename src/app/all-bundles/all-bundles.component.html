@@ -11,7 +11,7 @@
                     <input type="search" pInputText placeholder="Search by Name"
                         (input)="applyFilterGlobal($event, dv)">
                 </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
             </div>
         </ng-template>
         <ng-template let-bundle pTemplate="gridItem">
@@ -21,7 +21,7 @@
                         <span class="bundle-promotion" *ngIf="bundle.promotion != null">{{bundle.promotion?.name}}
                             Promotion!</span>
                         <div class="bundle-promotion-percent" *ngIf="bundle.promotion != null">
-                            {{bundle.promotion?.discountPercent}}% off!
+                            {{bundle.promotion?.discountPercent}}% off! <s>${{bundle.totalPrice | number : '.2-2'}}</s>
                         </div>
                     </div>
                     <br />
@@ -30,11 +30,11 @@
                         <br />
                         <div class="bundle-name">{{bundle.name}}</div>
                         <!-- <div class="bundle-description">{{bundle.description}}</div> -->
-                        <div class="bundle-price">${{bundle.unitPrice}}</div>
+                        <div class="bundle-price">${{bundle.unitPrice | number : '.2-2'}}</div>
                         <br />
                     </div>
                     <div class="bundle-grid-item-bottom">
-                        <p-button class="view-more-button">View More</p-button>
+                        <p-button class="view-more-button" [routerLink]="['/viewBundle', bundle.itemId]">View More</p-button>
                         &nbsp;&nbsp;&nbsp;
                         <p-button class="add-to-cart-button" (click)="addProductToCart(bundle)">Add to Cart</p-button>
                     </div>

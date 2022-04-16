@@ -41,6 +41,14 @@ import { DividerModule } from 'primeng/divider';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ViewBundleDetailsComponent } from './productDetailsPages/view-bundle-details/view-bundle-details.component';
 import { ViewAddOnDetailsComponent } from './productDetailsPages/view-add-on-details/view-add-on-details.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { CalendarModule } from 'primeng/calendar';
+import { ViewBundleComponent } from './item-views/view-bundle/view-bundle.component';
+import { ViewAddOnComponent } from './item-views/view-add-on/view-add-on.component';
+import { ViewPremadeBouquetComponent } from './item-views/view-premade-bouquet/view-premade-bouquet.component';
+import { AllPremadeBouquetsComponent } from './all-premade-bouquets/all-premade-bouquets.component';
+import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-types.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +66,11 @@ import { ViewAddOnDetailsComponent } from './productDetailsPages/view-add-on-det
     MyCreditCardsComponent,
     ViewBundleDetailsComponent,
     ViewAddOnDetailsComponent,
+    ViewBundleComponent,
+    ViewAddOnComponent,
+    ViewPremadeBouquetComponent,
+    AllPremadeBouquetsComponent,
+    AllGiftCardTypesComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +97,9 @@ import { ViewAddOnDetailsComponent } from './productDetailsPages/view-add-on-det
     ToastModule,
     DividerModule,
     InputNumberModule,
+    InputMaskModule,
+    RadioButtonModule,
+    CalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

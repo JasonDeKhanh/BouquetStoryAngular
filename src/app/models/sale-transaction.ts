@@ -7,8 +7,8 @@ export class SaleTransaction {
     totalLineItem: number | undefined;
     totalQuantity: number | undefined;
     totalAmount: number | undefined;
-    transactionDateTime: Date | undefined;
-    collectionDatetime: Date | undefined;
+    transactionDateTime: string | undefined;
+    collectionDatetime: string | undefined;
     isSelfPickup: boolean | undefined;
     deliveryAddress: string | undefined;
     voidRefund: boolean | undefined;
@@ -18,7 +18,7 @@ export class SaleTransaction {
     saleTransactionLineItems: SaleTransactionLineItem[] | undefined;
     customer: Customer | undefined;
 
-    constructor(saleTransactionId?: number, totalLineItem?: number, totalQuantity?: number, totalAmount?: number, transactionDateTime?: Date, collectionDateTime?: Date, isSelfPickup?: boolean, deliveryAddress?: string, voidRefund?: boolean, isPreorder?: boolean, isCompleted?: boolean) {
+    constructor(saleTransactionId?: number, totalLineItem?: number, totalQuantity?: number, totalAmount?: number, transactionDateTime?: string, collectionDateTime?: string, isSelfPickup?: boolean, deliveryAddress?: string, voidRefund?: boolean, isPreorder?: boolean, isCompleted?: boolean) {
 
         this.saleTransactionId = saleTransactionId;
         this.totalLineItem = totalLineItem;

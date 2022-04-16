@@ -59,14 +59,17 @@ export class HeaderComponent implements OnInit {
             // Premade Bouquets
             {
                 label: 'Premade Bouquets',
+                routerLink: ["/premadeBouquets"]
             },
             // Add Ons
             {
                 label: 'Add Ons',
+                routerLink: ["/addOns"]
             },
             // Gift Cards
             {
                 label: 'Gift Cards',
+                routerLink: ["/giftCards"]
             },
             // Bundles
             {
@@ -147,8 +150,9 @@ export class HeaderComponent implements OnInit {
     customerLogout(): void {
         this.sessionService.setIsLogin(false);
         this.sessionService.setCurrentCustomer(null);
-        window.location.reload();
         this.router.navigate(["/index"]);
+        window.location.reload();
+        
     }
 
     registerNewCustomer() {
