@@ -28,7 +28,9 @@ const routes: Routes = [
   { path: 'viewBundle', component: ViewBundleComponent },
   { path: 'viewBundle/:bundleId', component: ViewBundleComponent },
   { path: 'viewAddOn', component: ViewAddOnComponent },
-  { path: 'viewPremadeBouquet', component: ViewPremadeBouquetComponent }
+  { path: 'viewAddOn/:addOnId', component: ViewAddOnComponent },
+  { path: 'viewPremadeBouquet', component: ViewPremadeBouquetComponent },
+  { path: 'viewPremadeBouquet:/premadeBouquetId', component: ViewPremadeBouquetComponent }
 ];
 
 @NgModule({

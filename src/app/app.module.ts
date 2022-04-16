@@ -42,6 +42,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ViewBundleComponent } from './item-views/view-bundle/view-bundle.component';
 import { ViewAddOnComponent } from './item-views/view-add-on/view-add-on.component';
 import { ViewPremadeBouquetComponent } from './item-views/view-premade-bouquet/view-premade-bouquet.component';
+import { AllPremadeBouquetsComponent } from './all-premade-bouquets/all-premade-bouquets.component';
+import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-types.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { ViewPremadeBouquetComponent } from './item-views/view-premade-bouquet/v
     ViewBundleComponent,
     ViewAddOnComponent,
     ViewPremadeBouquetComponent,
+    AllPremadeBouquetsComponent,
+    AllGiftCardTypesComponent,
   ],
   imports: [
     BrowserModule,
