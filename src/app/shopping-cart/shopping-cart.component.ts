@@ -22,11 +22,7 @@ import {DropdownModule} from 'primeng/dropdown';
     selector: 'app-shopping-cart',
     templateUrl: './shopping-cart.component.html',
     styleUrls: ['./shopping-cart.component.css'],
-<<<<<<< HEAD
     providers: [MessageService, ConfirmationService,DatePipe, DropdownModule]
-=======
-    providers: [MessageService, ConfirmationService, DatePipe]
->>>>>>> edb37bc1697791b7512898097f51c2544da03f08
 })
 export class ShoppingCartComponent implements OnInit {
 
