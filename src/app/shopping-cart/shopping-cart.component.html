@@ -41,14 +41,15 @@
         </ng-template>
         <ng-template pTemplate="body" let-lineItem>
             <tr>
-                <td>{{lineItem?.serialNumer}}</td>
+                <td>{{lineItem?.serialNumber}}</td>
+                <!-- remove the item id column later, i used to debug only -->
                 <td>{{lineItem?.item?.itemId}}</td>
                 <td>item image</td>
                 <td>item name somehow</td>
                 <td>{{lineItem?.unitPrice}}</td>
                 <td>{{lineItem?.quantity}}</td>
                 <td>
-                    <script>lineItem.quantity * lineItem.unitPrice</script>
+                    <div [innerHTML]="'$' + getSubtotal(lineItem)"></div>
                 </td>
                 <td>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>

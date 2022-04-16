@@ -8,6 +8,7 @@ import { SessionService } from '../services/session.service';
 import { BundleService } from '../services/bundle.service';
 import { Bundle } from '../models/bundle';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
+import { Product } from '../models/product';
 
 @Component({
     selector: 'app-all-bundles',
@@ -50,12 +51,26 @@ export class AllBundlesComponent implements OnInit {
         this.bundleService.getBundles().subscribe({
             next: (response) => {
                 this.bundles = response;
+                // this.productQuantityMapInitializer();
             },
             error: (error) => {
                 console.log('********** AllBundlesComponent.ts: ' + error);
             }
         });
     }
+
+    // productQuantityMapInitializer() {
+    //     for (var bundle of this.bundles) {
+    //         let curProductQuantities = bundle.productQuantities;
+    //         // for (var productQuantity of bundle.productQuantities!) {
+    //         //     productQuantity[0].toString();
+    //         // }
+    //         console.log(curProductQuantities);
+    //         for (var product of bundle.products!) {
+    //             console.log(curProductQuantities!.get(product));
+    //         }
+    //     }
+    // }
 
     onSortChange(event: any) {
         let value = event.value;
@@ -74,8 +89,9 @@ export class AllBundlesComponent implements OnInit {
         dv.filterGlobal(($event.target as HTMLInputElement).value);
     }
 
+    // ADD TO CART
     addProductToCart(bundle: Bundle) {
-        var cartLineItems: SaleTransactionLineItem[];
+        let cartLineItems: SaleTransactionLineItem[];
         cartLineItems = this.sessionService.getCartLineItems();
         var itemAlreadyAdded: boolean;
         itemAlreadyAdded = false;
@@ -91,20 +107,49 @@ export class AllBundlesComponent implements OnInit {
             }
         }
 
+        // get total price
+        // var unitPriceBundle: number;
+        // unitPriceBundle = 0;
+        // for (var product of bundle?.products ? bundle.products : new Array()) {
 
-        var unitPriceBundle: number;
-        unitPriceBundle = 0;
-        for (var product of bundle?.products ? bundle.products : new Array()) {
-            unitPriceBundle += product.unitPrice;
-        }
+        //     // console.log("map.get stuff: " + bundle.productQuantities!.get(product));
+        //     // console.log("check map thingy: " + bundle!.productQuantities['entity.AddOn[ id=1 ]']);
+
+        //     var curProductQuantity = 1;
+
+        //     let productQuantityMap = new Map<Product, number>();
+        //     // for (var value in bundle.productQuantities) {
+        //     //     productQuantityMap.set(value, bundle.productQuantities[value]);
+        //     // }
+
+
+        //     // for (var bundle of this.bundles) {
+        //     //     let jsonProductQuantities = bundle.productQuantities;
+        //     //     // for (var productQuantity of bundle.productQuantities!) {
+        //     //     //     productQuantity[0].toString();
+        //     //     // }
+        //     //     console.log(jsonProductQuantities);
+        //     // }
+
+
+        //     // productQuantityMap = bundle.productQuantities!;
+        //     curProductQuantity = productQuantityMap.get(product)!;
+        //     // };
+        //     unitPriceBundle += (product.unitPrice * curProductQuantity);
+        // }
         // if item is not already inside cart,
         // add to cart
         if (itemAlreadyAdded === false) {
-            newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, unitPriceBundle);
+            console.log("cartLineItems.length?? " + cartLineItems.length)
+            newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, 100);
+            // newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, bundle.price);
             newLineItem.item = bundle;
             cartLineItems.push(newLineItem);
             this.sessionService.setCartLineItems(cartLineItems);
             console.log("inside here, item not already inside cart")
+            console.log("line item price: " + newLineItem.unitPrice)
+            console.log("bundle total price: " + bundle.totalPrice)
+            console.log("line item serial number??: " + newLineItem.serialNumber)
         }
         else // item already in cart 
         {
