@@ -39,9 +39,9 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { ViewBundleComponent } from './ItemViews/view-bundle/view-bundle.component';
-import { ViewAddOnComponent } from './ItemViews/view-add-on/view-add-on.component';
-import { ViewPremadeBouquetComponent } from './ItemViews/view-premade-bouquet/view-premade-bouquet.component';
+import { ViewBundleComponent } from './item-views/view-bundle/view-bundle.component';
+import { ViewAddOnComponent } from './item-views/view-add-on/view-add-on.component';
+import { ViewPremadeBouquetComponent } from './item-views/view-premade-bouquet/view-premade-bouquet.component';
 
 @NgModule({
   declarations: [
