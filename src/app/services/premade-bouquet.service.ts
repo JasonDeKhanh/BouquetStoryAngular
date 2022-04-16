@@ -3,31 +3,31 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { Bundle } from '../models/bundle';
+import { PremadeBouquet } from '../models/premade-bouquet';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class BundleService {
+export class PremadeBouquetService {
 
-    baseUrl: string = "/api/Bundle";
+	baseUrl: string = "/api/Bouquet";
 
-    constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) { }
 
-    getBundles(): Observable<Bundle[]> {
-        return this.httpClient.get<Bundle[]>(this.baseUrl + "/retrieveAllBundles").pipe
-            (
-                catchError(this.handleError)
-            );
-    }
+	getPremadeBouquets(): Observable<PremadeBouquet[]> {
+		return this.httpClient.get<PremadeBouquet[]>(this.baseUrl + "/retrieveAllPremadeBouquets").pipe
+		(
+			catchError(this.handleError)
+		);
+	}
 
-    getBundleByBundleId(bundleId: number): Observable<Bundle> {
-        return this.httpClient.get<Bundle>(this.baseUrl + "/retrieveBundle/" + bundleId).pipe(
+	getPremadeBouquetByPremadeBouquetId(premadeBouquetId: number): Observable<PremadeBouquet> {
+        return this.httpClient.get<PremadeBouquet>(this.baseUrl + "/retrievePremadeBouquet/" + premadeBouquetId).pipe(
             catchError(this.handleError)
         );
     }
 
-    private handleError(error: HttpErrorResponse) {
+	private handleError(error: HttpErrorResponse) {
         let errorMessage: string = "";
 
         if (error.error instanceof ErrorEvent) {
@@ -41,4 +41,5 @@ export class BundleService {
 
         return throwError(() => new Error(errorMessage));
     }
+
 }
