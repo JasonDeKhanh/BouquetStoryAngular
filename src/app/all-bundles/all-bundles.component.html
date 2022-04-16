@@ -21,7 +21,7 @@
                         <span class="bundle-promotion" *ngIf="bundle.promotion != null">{{bundle.promotion?.name}}
                             Promotion!</span>
                         <div class="bundle-promotion-percent" *ngIf="bundle.promotion != null">
-                            {{bundle.promotion?.discountPercent}}% off!
+                            {{bundle.promotion?.discountPercent}}% off! <s>${{bundle.totalPrice | number : '.2-2'}}</s>
                         </div>
                     </div>
                     <br />
@@ -30,7 +30,7 @@
                         <br />
                         <div class="bundle-name">{{bundle.name}}</div>
                         <!-- <div class="bundle-description">{{bundle.description}}</div> -->
-                        <div class="bundle-price">${{bundle.unitPrice}}</div>
+                        <div class="bundle-price">${{bundle.unitPrice | number : '.2-2'}}</div>
                         <br />
                     </div>
                     <div class="bundle-grid-item-bottom">

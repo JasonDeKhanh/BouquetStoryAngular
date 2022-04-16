@@ -39,6 +39,9 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ViewBundleComponent } from './ItemViews/view-bundle/view-bundle.component';
+import { ViewAddOnComponent } from './ItemViews/view-add-on/view-add-on.component';
+import { ViewPremadeBouquetComponent } from './ItemViews/view-premade-bouquet/view-premade-bouquet.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ShoppingCartComponent,
     AccessRightErrorComponent,
     MyCreditCardsComponent,
+    ViewBundleComponent,
+    ViewAddOnComponent,
+    ViewPremadeBouquetComponent,
   ],
   imports: [
     BrowserModule,
