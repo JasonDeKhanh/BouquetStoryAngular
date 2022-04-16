@@ -1,1 +1,42 @@
-<p>all-gift-card-types works!</p>
+<br />
+<div class="card">
+    <p-dataView #dv [value]="giftCardTypes" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
+        [sortOrder]="sortOrder" layout="grid">
+        <ng-template pTemplate="header">
+            <div class="flex flex-column md:flex-row md:justify-content-between">
+                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
+                    styleClass="mb-2 md:mb-0"></p-dropdown>
+                <span class="p-input-icon-left mb-2 md:mb-0">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Search by Name"
+                        (input)="applyFilterGlobal($event, dv)">
+                </span>
+                <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
+            </div>
+        </ng-template>
+        <ng-template let-giftCardType pTemplate="gridItem">
+            <div class="p-col-12 md:col-3">
+                <div class="giftCardType-grid-item card">
+                    <div class="giftCardType-grid-item-top">
+                    </div>
+                    <br />
+                    <div class=" giftCardType-grid-item-content">
+                        <img [src]="'http://localhost:8080/BouquetStorySystem-war/' + giftCardType.imgAddress" />
+                        <br />
+                        <div class="giftCardType-name">{{giftCardType.name}}</div>
+                        <div class="giftCardType-description">{{giftCardType.description}}</div>
+                        <div class="giftCardType-price">${{giftCardType.unitPrice | number : '.2-2'}}</div>
+                        <br />
+                    </div>
+                    <div class="giftCardType-grid-item-bottom">
+                        <p-button class="view-more-button" [routerLink]="['/viewGiftCardType', giftCardType.itemId]">View More</p-button>
+                        <!-- &nbsp;&nbsp;&nbsp;
+                        <p-button class="add-to-cart-button" (click)="addProductToCart(giftCardType)">Add to Cart</p-button> -->
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="footer">Test Footer</ng-template>
+    </p-dataView>
+
+</div>

@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { FlowerGalleryComponent } from './flower-gallery/flower-gallery.component';
 import { AllBundlesComponent } from './all-bundles/all-bundles.component';
+import { AllPremadeBouquetsComponent } from './all-premade-bouquets/all-premade-bouquets.component';
+import { AllAddOnsComponent } from './all-add-ons/all-add-ons.component';
+import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-types.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MyAddressesComponent } from './my-addresses/my-addresses.component';
@@ -18,6 +21,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
   { path: 'bundles', component: AllBundlesComponent },
+  { path: 'premadeBouquets', component: AllPremadeBouquetsComponent },
+  { path: 'addOns', component: AllAddOnsComponent },
+  { path: 'giftCards', component: AllGiftCardTypesComponent },
   { path: 'flowerGallery', component: FlowerGalleryComponent },
   { path: 'myProfile', component: MyProfileComponent },
   { path: 'myOrders', component: MyOrdersComponent },

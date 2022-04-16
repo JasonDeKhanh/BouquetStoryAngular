@@ -1,0 +1,105 @@
+.card {
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	margin-bottom: 2rem;
+	margin-left: 5%;
+	margin-right: 5%;
+	background-color: white;
+}
+
+:host ::ng-deep .p-dataview-header {
+	background-color: #f2e8e076;
+	border-radius: 4px;
+}
+
+.premadeBouquet-name {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin: 0.5rem 0 0 0;
+}
+
+.premadeBouquet-description {
+	margin: 0 0 1rem 0;
+}
+
+.premadeBouquet-grid-item {
+	margin: 0.5em;
+	border: 1px solid #dee2e6;
+}
+
+.premadeBouquet-grid-item .premadeBouquet-grid-item-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 30px;
+}
+
+.premadeBouquet-grid-item .premadeBouquet-grid-item-bottom {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+/* .premadeBouquet-grid-item .premadeBouquet-grid-item-bottom .view-more-button .p-button {
+
+} */
+
+.premadeBouquet-grid-item .premadeBouquet-grid-item-content {
+	text-align: center;
+}
+
+.premadeBouquet-grid-item-content > img {
+	height: 250px;
+	width: 250px;
+	object-fit: cover;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.premadeBouquet-grid-item .premadeBouquet-price {
+	font-size: 1.2rem;
+	font-weight: 400;
+	/* align-self: center;
+	align-items: center; */
+}
+
+/* .card2 {
+padding: 2rem;
+box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+border-radius: 4px;
+margin-bottom: 2rem;
+background-color: white;
+width: 20px;
+} */
+
+/* @media screen and (max-width: 576px) {
+.bundle-list-item {
+        flex-direction: column;
+        align-items: center;
+}
+.bundle-list-item img {
+        width: 75%;
+        margin: 2rem 0;
+}
+.bundle-list-item .bundle-list-detail {
+        text-align: center;
+}
+.bundle-list-item .bundle-price {
+        align-self: center;
+}
+.bundle-list-item .bundle-list-action {
+        display: flex;
+        flex-direction: column;
+}
+.bundle-list-item .bundle-list-action {
+        margin-top: 2rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+}
+} */
