@@ -70,9 +70,9 @@
                     <!-- THIS CHECKOUT OPENS THE !!REGISTERED!! GUEST CHECKOUT DIALOGUE -->
                     <p-button label="Checkout" class="p-button-lg" (click)="doRegisteredCheckout(saleTransactionLineItems)"></p-button>
                 </div>
-                <div class="pr-8" *ngIf="sessionService.getIsLogin() == false">
+                <div class="pr-8" *ngIf="sessionService.getIsLogin() == false"> 
                     <!-- THIS CHECKOUT OPENS THE UN-UN-UNREGISTERED GUEST CHECKOUT DIALOGUE -->
-                    <p-button label="Checkout" class="p-button-lg"></p-button>
+                    <p-button label="Checkout" class="p-button-lg"  (click)="doUnregisteredCheckout(saleTransactionLineItems)"></p-button>
                 </div>
             </div>
         </ng-template>
@@ -80,9 +80,8 @@
 </div>
 
 <form name="registeredGuestCheckout" ngNativeValidate>
-    <p-dialog header="Checkout"  [(visible)]="displayRegisteredGuestCheckoutDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid" > 
+    <p-dialog header="Checkout"  [(visible)]="displayRegisteredGuestCheckoutDialog" [style]="{width: '450px', height:'700px'}" [modal]="true" styleClass="p-fluid" > 
         <ng-template pTemplate="content">
-
 
             <div class="field">
                 <label for="ccNo">Credit Card No</label>
@@ -112,6 +111,49 @@
             <p-divider></p-divider>
         
             <div class="p-field-radiobutton" style="margin-bottom: 1em;">
+                <p-radioButton name="isSelfPickup" [value]="true" [(ngModel)]="isSelfPickup" inputId="isSelfPickup1" required></p-radioButton>
+                <label for="isSelfPickup1">Self-Pickup</label> &nbsp;&nbsp;
+                <p-radioButton name="isSelfPickup"  [value]="false" [(ngModel)]="isSelfPickup" inputId="isSelfPickup2"></p-radioButton>
+                <label for="isSelfPickup2">Delivery</label>
+            </div>
+            <div class="field" >
+                <label  for="dates">Pickup / Deliery Date</label>
+                <p-calendar [(ngModel)]="collectionDateTime" name="dates" [minDate]="minDateValue" [readonlyInput]="true" inputId="dates"></p-calendar>
+            </div>
+
+            <div *ngIf="isSelfPickup==false">
+                <div class="field">
+                    <label for="addLine">Address Line</label>
+                    <input type="text" pInputText id="addLine" name="addLine" [(ngModel)]="address.line" required />
+                </div>
+                <div class="field">
+                    <label for="name">Post Code</label>
+                    <input type="text" pInputText id="name" name="name" [(ngModel)]="address.postCode" required />
+                </div>
+            </div>
+
+            <!-- <h5>Credit Card List</h5>
+            <p-dropdown [options]="creditCards" [(ngModel)]="creditCard" name="ss"  placeholder="Select a Credit Card" [group]="true">
+                <ng-template let-cc pTemplate="cc">
+                    <div class="flex align-items-center">
+                        <span>{{cc.creditCardId}}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+
+            <p-divider></p-divider>
+            <h5>Address List</h5>
+            <p-dropdown [options]="addresses" [(ngModel)]="address" name="address" placeholder="Select a Address"  [group]="true"
+            [showClear]="true">
+                <ng-template let-group pTemplate="group">
+                    <div class="flex align-items-center">
+                        <span>{{group.line}} {{group.postCode}}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+
+        
+            <div class="p-field-radiobutton" style="margin: 1.5em 0;">
                 <p-radioButton name="isSelfPickup" value="true" [(ngModel)]="isSelfPickup" inputId="isSelfPickup1" required></p-radioButton>
                 <label for="isSelfPickup1">Self-Pickup</label> &nbsp;&nbsp;
                 <p-radioButton name="isSelfPickup" value="false" [(ngModel)]="isSelfPickup" inputId="isSelfPickup2"></p-radioButton>
@@ -120,18 +162,17 @@
             <div class="field" >
                 <label  for="dates">Pickup / Deliery Date</label>
                 <p-calendar [(ngModel)]="collectionDateTime" name="dates" [minDate]="minDateValue" [readonlyInput]="true" inputId="dates"></p-calendar>
-            </div>
+            </div> -->
+            
 
-            <div class="field">
+            <!-- <div class="field">
                 <label for="addLine">Address Line</label>
                 <input type="text" pInputText id="addLine" name="addLine" [(ngModel)]="address.line" required />
-                <!-- <small class="p-error" *ngIf="submitted && !address.line">Address Line is required.</small> -->
             </div>
             <div class="field">
                 <label for="name">Post Code</label>
                 <input type="text" pInputText id="name" name="name" [(ngModel)]="address.postCode" required />
-                <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
-            </div>
+            </div> -->
     
 
         </ng-template>
@@ -144,8 +185,78 @@
 </form>
 
 <form name="unregisteredGuestCheckout" ngNativeValidate>
-    <p-dialog header="Checkout" [(visible)]="displayUnregisteredGuestCheckoutDialog" >
+        <p-dialog header="Checkout"  [(visible)]="displayUnregisteredGuestCheckoutDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid" > 
+            <ng-template pTemplate="content">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" pInputText id="email" name="email" [(ngModel)]="newUsername" required />
+                </div>
+                <div class="field">
+                    <label for="firstName">First Name</label>
+                    <input type="text" pInputText id="firstName" name="firstName" [(ngModel)]="newFirstName" required />
+                </div>
+                <div class="field">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" pInputText id="lastName" name="lastName" [(ngModel)]="newLastName" required />
+                </div>
 
-        unregistered guest checkout!!
-    </p-dialog>
+                <p-divider></p-divider>
+
+                <div class="field">
+                    <label for="ccNo">Credit Card No</label>
+                    <p-inputMask id="ccNo" name="ccNo" [(ngModel)]="creditCard.ccNum"mask="9999999999999999" placeholder="0000-0000-0000-0000" [required]="true"></p-inputMask>
+                    <!-- <input type="text" pInputText id="name" name="name" [(ngModel)]="address.postCode" required /> -->
+                    <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
+                </div>
+    
+                <div class="field">
+                    <label for="holderName">Card Holder Name</label>
+                    <input type="text" pInputText id="holderName" name="holderName" [(ngModel)]="creditCard.ccHolderName" required />
+                    <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
+                </div>
+                
+                <div class="field">
+                    <span for="expiry">Card Expiry (YY/MM) </span>
+                    <p-inputMask  id="expiry" name="expiry" [(ngModel)]="expiryString" mask="99/99" placeholder="yy/mm" [required]="true"></p-inputMask>
+                    <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
+                </div>
+    
+                <div class="field">
+                    <span for="cvv">CVV </span>
+                    <p-inputMask  id="cvv" name="cvv" mask="999" placeholder="000" [required]="true"></p-inputMask>
+                    <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
+                </div>
+    
+                <p-divider></p-divider>
+            
+                <div class="p-field-radiobutton" style="margin-bottom: 1em;">
+                    <p-radioButton name="isSelfPickup" [value]="true" [(ngModel)]="isSelfPickup" inputId="isSelfPickup1" required></p-radioButton>
+                    <label for="isSelfPickup1">Self-Pickup</label> &nbsp;&nbsp;
+                    <p-radioButton name="isSelfPickup"  [value]="false" [(ngModel)]="isSelfPickup" inputId="isSelfPickup2"></p-radioButton>
+                    <label for="isSelfPickup2">Delivery</label>
+                </div>
+
+                <div class="field" >
+                    <label  for="dates">Pickup / Deliery Date</label>
+                    <p-calendar [(ngModel)]="collectionDateTime" name="dates" [minDate]="minDateValue" [readonlyInput]="true" inputId="dates"></p-calendar>
+                </div>
+    
+                <div *ngIf="isSelfPickup==false">
+                    <div class="field">
+                        <label for="addLine">Address Line</label>
+                        <input type="text" pInputText id="addLine" name="addLine" [(ngModel)]="address.line" required />
+                    </div>
+                    <div class="field">
+                        <label for="name">Post Code</label>
+                        <input type="text" pInputText id="name" name="name" [(ngModel)]="address.postCode" required />
+                    </div>
+                </div>
+    
+            </ng-template>
+        
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-outlined p-button-secondary" (click)="hideDialog()"></button>
+                <button type="submit" pButton pRipple label="Checkout Now" icon="pi pi-check"  (click)="unregisteredGuestCheckout()"></button>
+            </ng-template>
+        </p-dialog>
 </form>
