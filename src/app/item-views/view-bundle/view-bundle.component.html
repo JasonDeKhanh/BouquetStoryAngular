@@ -1,1 +1,25 @@
-<p>view-bundle works!</p>
+<br />
+<div class="card">
+	<h2>Bundle Info</h2>
+
+	<span *ngIf="retrieveBundleError == true" style="color:red;">Bundle ID {{bundleId}} does not exist!</span>
+
+	<div *ngIf="retrieveBundleError == false && bundleToView != null">
+		<div class="bundle-name">{{bundleToView.name}}</div>
+
+		<div class="bundle-image">
+				<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + bundleToView.imgAddress" />
+		</div>
+			
+		<div class="bundle-promotion" *ngIf="bundleToView.promotion != null">{{bundleToView.promotion?.name}}</div>
+
+		<div class="bundle-promotion-amount" *ngIf="bundleToView.promotion != null">{{bundleToView.promotion?.discountPercent}}%</div>
+
+		<div class="bundle-unitPrice">
+			<span *ngIf="bundleToView.promotion != null"><s>${{bundleToView.totalPrice | number : '.2-2'}}</s></span>
+			<span>${{bundleToView.unitPrice | number : '.2-2'}}</span>
+		</div>
+
+		<div class="bundle-description">{{bundleToView.description}}</div>
+	</div>
+</div>

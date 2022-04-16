@@ -21,6 +21,12 @@ export class BundleService {
             );
     }
 
+    getBundleByBundleId(bundleId: number): Observable<Bundle> {
+        return this.httpClient.get<Bundle>(this.baseUrl + "/retrieveBundle/" + bundleId).pipe(
+            catchError(this.handleError)
+        );
+    }
+
     private handleError(error: HttpErrorResponse) {
         let errorMessage: string = "";
 

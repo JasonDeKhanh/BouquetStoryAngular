@@ -34,7 +34,7 @@
                         <br />
                     </div>
                     <div class="bundle-grid-item-bottom">
-                        <p-button class="view-more-button">View More</p-button>
+                        <p-button class="view-more-button" [routerLink]="['/viewBundle', bundle.itemId]">View More</p-button>
                         &nbsp;&nbsp;&nbsp;
                         <p-button class="add-to-cart-button" (click)="addProductToCart(bundle)">Add to Cart</p-button>
                     </div>

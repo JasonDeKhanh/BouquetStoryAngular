@@ -12,6 +12,7 @@ export class Bundle extends Item {
     // productQuantities: { [product: string]: number };
     unitPrice: number | undefined;
     totalPrice: number | undefined;
+    description: string | undefined;
 
     promotion: Promotion | undefined;
     products: Product[] | undefined;
