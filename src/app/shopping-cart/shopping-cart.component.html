@@ -70,10 +70,30 @@
                     Total Amonut: ${{totalPriceAmount}}
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="pr-8">
+                <div class="pr-8" *ngIf="sessionService.getIsLogin() == true">
+                    <!-- THIS CHECKOUT OPENS THE !!REGISTERED!! GUEST CHECKOUT DIALOGUE -->
+                    <p-button label="Checkout" class="p-button-lg"></p-button>
+                </div>
+                <div class="pr-8" *ngIf="sessionService.getIsLogin() == false">
+                    <!-- THIS CHECKOUT OPENS THE UN-UN-UNREGISTERED GUEST CHECKOUT DIALOGUE -->
                     <p-button label="Checkout" class="p-button-lg"></p-button>
                 </div>
             </div>
         </ng-template>
     </p-table>
 </div>
+
+<form name="registeredGuestCheckout" ngNativeValidate>
+    <!-- <p-dialog header="Register" [(visible)]="displayRegisterDialog"> -->
+    <p-dialog header="Register">
+        REGISTERED GUEST CHECKOUT!!!!!
+    </p-dialog>
+</form>
+
+<form name="unregisteredGuestCheckout" ngNativeValidate>
+    <!-- <p-dialog header="Register" [(visible)]="displayRegisterDialog"> -->
+    <p-dialog header="Register">
+
+        unregistered guest checkout!!
+    </p-dialog>
+</form>
