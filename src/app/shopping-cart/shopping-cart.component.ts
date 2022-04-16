@@ -22,7 +22,11 @@ import {DropdownModule} from 'primeng/dropdown';
     selector: 'app-shopping-cart',
     templateUrl: './shopping-cart.component.html',
     styleUrls: ['./shopping-cart.component.css'],
+<<<<<<< HEAD
     providers: [MessageService, ConfirmationService,DatePipe, DropdownModule]
+=======
+    providers: [MessageService, ConfirmationService, DatePipe]
+>>>>>>> edb37bc1697791b7512898097f51c2544da03f08
 })
 export class ShoppingCartComponent implements OnInit {
 
@@ -34,6 +38,7 @@ export class ShoppingCartComponent implements OnInit {
     isSelfPickup: boolean;
     deliveryAddress: string;
     isPreorder: boolean;
+<<<<<<< HEAD
     address : Address = new Address();
     creditCard : CreditCard = new CreditCard();
     expiryString : String = "";
@@ -47,16 +52,28 @@ export class ShoppingCartComponent implements OnInit {
     addresses : Address[] | undefined;
     creditCards : CreditCard[] | undefined;
     items: number[] | undefined;
+=======
+    address: Address = new Address();
+    creditCard: CreditCard = new CreditCard();
+    expiryString: String = "";
+    minDateValue: Date = new Date();
+>>>>>>> edb37bc1697791b7512898097f51c2544da03f08
 
-    displayRegisteredGuestCheckoutDialog : boolean = false;
-    displayUnregisteredGuestCheckoutDialog : boolean = false;
+    displayRegisteredGuestCheckoutDialog: boolean = false;
+    displayUnregisteredGuestCheckoutDialog: boolean = false;
 
     constructor(public sessionService: SessionService,
+<<<<<<< HEAD
                 private messageService: MessageService, 
                 private confirmationService: ConfirmationService,
                 private saleTransactionService : SaleTransactionService,
                 private creditCardService : CreditCardService,
                 private addressService : AddressService) {
+=======
+        private messageService: MessageService,
+        private confirmationService: ConfirmationService,
+        private saleTransactionService: SaleTransactionService) {
+>>>>>>> edb37bc1697791b7512898097f51c2544da03f08
 
         this.totalLineItem = 0;
         this.totalQuantity = 0;
@@ -66,7 +83,14 @@ export class ShoppingCartComponent implements OnInit {
         this.deliveryAddress = "";
         this.isPreorder = false;
         this.minDateValue.setDate(new Date().getDate() + 3);
+<<<<<<< HEAD
    
+=======
+
+
+        // this.creditCard./
+
+>>>>>>> edb37bc1697791b7512898097f51c2544da03f08
         this.saleTransactionLineItems = new Array();
 
         this.addressService.getAddresses(this.sessionService.getUsername()).subscribe({
@@ -153,13 +177,13 @@ export class ShoppingCartComponent implements OnInit {
     }
 
 
-    doRegisteredCheckout(newSaleTransactionItems : SaleTransactionLineItem[] ) {
+    doRegisteredCheckout(newSaleTransactionItems: SaleTransactionLineItem[]) {
         this.displayRegisteredGuestCheckoutDialog = true;
 
         this.saleTransactionLineItems = newSaleTransactionItems;
 
         for (var lineItem of newSaleTransactionItems) {
-            console.log("==>"+lineItem.item.itemId);
+            console.log("==>" + lineItem.item!.itemId);
         }
 
         // call saletransactionservice
