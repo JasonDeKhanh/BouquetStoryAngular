@@ -147,8 +147,9 @@ export class HeaderComponent implements OnInit {
     customerLogout(): void {
         this.sessionService.setIsLogin(false);
         this.sessionService.setCurrentCustomer(null);
-        window.location.reload();
         this.router.navigate(["/index"]);
+        window.location.reload();
+        
     }
 
     registerNewCustomer() {
