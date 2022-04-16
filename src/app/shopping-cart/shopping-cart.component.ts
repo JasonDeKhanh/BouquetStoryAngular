@@ -97,6 +97,9 @@ export class ShoppingCartComponent implements OnInit {
 
         // catch error or somethign idk
 
+
+        // registered checkout and unregistered checkout??
+
     }
 
 }
