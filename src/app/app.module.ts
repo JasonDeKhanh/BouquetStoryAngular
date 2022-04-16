@@ -38,6 +38,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { DividerModule } from 'primeng/divider';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { DividerModule } from 'primeng/divider';
     ToolbarModule,
     ToastModule,
     DividerModule,
+    InputNumberModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

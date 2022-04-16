@@ -141,7 +141,7 @@ export class AllBundlesComponent implements OnInit {
         // add to cart
         if (itemAlreadyAdded === false) {
             console.log("cartLineItems.length?? " + cartLineItems.length)
-            newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, 100);
+            newLineItem = new SaleTransactionLineItem(1, cartLineItems.length + 1, 1, 100);
             // newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, bundle.price);
             newLineItem.item = bundle;
             cartLineItems.push(newLineItem);

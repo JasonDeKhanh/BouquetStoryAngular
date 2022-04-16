@@ -54,6 +54,33 @@ export class ShoppingCartComponent implements OnInit {
         return lineItem!.unitPrice! * lineItem!.quantity!;
     }
 
+    updateTotalStuff(event: any) {
+        var tempQuantity = 0;
+        var tempPriceAmount = 0;
+        var index = 1;
+        for (var lineItem of this.saleTransactionLineItems) {
+            lineItem.serialNumber = index;
+            index += 1;
+            tempQuantity += lineItem.quantity!;
+            tempPriceAmount += lineItem.quantity! * lineItem.unitPrice!;
+        }
+        this.totalQuantity = tempQuantity;
+        this.totalPriceAmount = tempPriceAmount;
+
+
+
+        this.sessionService.setCartLineItems(this.saleTransactionLineItems)
+    }
+
+    removeCartItem(lineItem: SaleTransactionLineItem) {
+        this.saleTransactionLineItems.forEach((lineItemVar, index) => {
+            if (lineItem === lineItemVar) {
+                this.saleTransactionLineItems.splice(index, 1);
+            }
+        })
+        this.sessionService.setCartLineItems(this.saleTransactionLineItems)
+        this.updateTotalStuff(null);
+    }
 
     doCheckout() {
         var newSaleTransaction: SaleTransaction;
@@ -69,8 +96,6 @@ export class ShoppingCartComponent implements OnInit {
         // createNewSaleTransaction(customerId, newSaleTransaction)
 
         // catch error or somethign idk
-
-
 
     }
 

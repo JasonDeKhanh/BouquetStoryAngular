@@ -47,19 +47,33 @@
                 <td>item image</td>
                 <td>item name somehow</td>
                 <td>{{lineItem?.unitPrice}}</td>
-                <td>{{lineItem?.quantity}}</td>
+                <td>
+                    <p-inputNumber [showButtons]="true" buttonLayout="vertical" spinnerMode="horizontal" [min]="1"
+                        [(ngModel)]="lineItem.quantity" (onInput)="updateTotalStuff($event)"></p-inputNumber>
+                </td>
                 <td>
                     <div [innerHTML]="'$' + getSubtotal(lineItem)"></div>
                 </td>
                 <td>
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"></button>
+                    <button pButton pRipple icon="pi pi-trash" label="Remove" class="p-button-rounded p-button-warning"
+                        (click)="removeCartItem(lineItem)"></button>
                 </td>
             </tr>
         </ng-template>
         <ng-template pTemplate="summary">
-            <!-- <div class="flex align-items-center justify-content-between">
-                    In total there are {{addresses ? addresses.length : 0 }} addresses.
-                </div> -->
+            <div class="flex align-items-center justify-content-end">
+                <div class="pr-8">
+                    Total Number of Items: {{totalQuantity}}
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="pr-8">
+                    Total Amonut: ${{totalPriceAmount}}
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="pr-8">
+                    <p-button label="Checkout" class="p-button-lg"></p-button>
+                </div>
+            </div>
         </ng-template>
     </p-table>
 </div>
