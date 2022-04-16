@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
             // Create Your Own Bouquet button
             {
                 label: 'Create Your Own Bouquet',
+                routerLink: ["/createYourOwnBouquet"]
             },
             // Premade Bouquets
             {
@@ -152,7 +153,7 @@ export class HeaderComponent implements OnInit {
         this.sessionService.setCurrentCustomer(null);
         this.router.navigate(["/index"]);
         window.location.reload();
-        
+
     }
 
     registerNewCustomer() {

@@ -49,6 +49,10 @@ import { ViewAddOnComponent } from './item-views/view-add-on/view-add-on.compone
 import { ViewPremadeBouquetComponent } from './item-views/view-premade-bouquet/view-premade-bouquet.component';
 import { AllPremadeBouquetsComponent } from './all-premade-bouquets/all-premade-bouquets.component';
 import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-types.component';
+import { CreateYourOwnBouquetComponent } from './create-your-own-bouquet/create-your-own-bouquet.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { SplitterModule } from 'primeng/splitter';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +75,7 @@ import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-t
     ViewPremadeBouquetComponent,
     AllPremadeBouquetsComponent,
     AllGiftCardTypesComponent,
+    CreateYourOwnBouquetComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,6 +105,8 @@ import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-t
     InputMaskModule,
     RadioButtonModule,
     CalendarModule,
+    ScrollPanelModule,
+    SplitterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
