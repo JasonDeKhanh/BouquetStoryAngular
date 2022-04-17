@@ -55,6 +55,7 @@ import { SplitterModule } from 'primeng/splitter';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { ViewGiftCardTypeComponent } from './item-views/view-gift-card-type/view-gift-card-type.component';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import { ViewGiftCardTypeComponent } from './item-views/view-gift-card-type/view
     ScrollPanelModule,
     SplitterModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
