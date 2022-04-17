@@ -96,7 +96,7 @@ export class ShoppingCartComponent implements OnInit {
 
                 for(var cc of this.creditCards)
                 this.listCreditCards.push(
-                    { label: cc.creditCardId.toString(), value: cc }
+                    { label: cc.ccNum.toString(), value: cc }
                 )
             },
             error:(error)=>{
