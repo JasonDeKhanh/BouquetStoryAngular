@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'viewAddOn', component: ViewAddOnComponent },
   { path: 'viewAddOn/:addOnId', component: ViewAddOnComponent },
   { path: 'viewPremadeBouquet', component: ViewPremadeBouquetComponent },
-  { path: 'viewPremadeBouquet:/premadeBouquetId', component: ViewPremadeBouquetComponent },
+  { path: 'viewPremadeBouquet/:premadeBouquetId', component: ViewPremadeBouquetComponent },
   { path: 'createYourOwnBouquet', component: CreateYourOwnBouquetComponent }
 ];
 
