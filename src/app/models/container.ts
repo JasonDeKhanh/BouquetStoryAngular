@@ -1,3 +1,5 @@
+import { ContainerType } from "./container-type";
+
 export class Container {
 
     containerId: number | undefined;
@@ -9,6 +11,8 @@ export class Container {
     unitPrice: number | undefined;
     flowerLimit: number | undefined;
     isOnDisplay: boolean | undefined;
+
+    containerType: ContainerType | undefined;
 
 
     constructor(containerId?: number, color?: string, imgAdress?: string, description?: string, quantityOnHand?: number, reorderQuantity?: number, unitPrice?: number, flowerLimit?: number, isOnDisplay?: boolean) {

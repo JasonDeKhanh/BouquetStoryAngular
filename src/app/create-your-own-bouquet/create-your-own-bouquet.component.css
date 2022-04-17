@@ -11,3 +11,163 @@
     /* justify-content: center; */
     /* align-content: space-between; */
 }
+
+.cardListAdded {
+    width: 50%;
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    /* margin-left: 5%;
+    margin-right: 5%; */
+    background-color: white;
+    /* display: flex;
+    align-content: center; */
+    /* justify-content: center;
+    align-content: space-between; */
+}
+
+.cardCreateSide {
+    width: 50%;
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    /* margin-left: 5%; */
+    margin-right: 2%;
+    background-color: white;
+}
+
+.cardItem {
+    padding: 1rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+/* :host ::ng-deep .p-dataview {
+    background-color: #f2e8e076;
+    border-radius: 4px;
+} */
+
+:host ::ng-deep .p-dataview-header {
+    background-color: #f2e8e076;
+    border-radius: 4px;
+}
+
+.p-scrollpanel.customScrollBar .p-scrollpanel-wrapper {
+    border-right: 9px solid var(--layer-1);
+}
+.p-scrollpanel.customScrollBar .p-scrollpanel-bar {
+    background-color: var(--primary-color);
+    opacity: 1;
+    transition: background-color 0.2s;
+}
+.p-scrollpanel.customScrollBar .p-scrollpanel-bar:hover {
+    background-color: #007ad9;
+}
+
+
+.container-name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0 0;
+}
+
+.container-type {
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.container-description {
+    margin: 0 0 1rem 0;
+}
+
+.container-list-item .container-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    align-self: flex-end;
+}
+
+.container-grid-item {
+    margin: 0.5em;
+    border: 1px solid #dee2e6;
+}
+
+.container-grid-item .container-grid-item-top, .container-grid-item .container-grid-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-grid-item .container-grid-item-content {
+    text-align: center;
+}
+
+.container-grid-item-content > img {
+    height: 100px;
+	width: 100px;
+	object-fit: cover;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.container-grid-item .container-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* below: Your Bouquet side */
+.container-nameSelected {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0 0;
+}
+
+.container-typeSelected {
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.container-descriptionSelected {
+    margin: 0 0 1rem 0;
+}
+
+.container-list-itemSelected .container-priceSelected {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    align-self: flex-end;
+}
+
+.container-grid-itemSelected {
+    margin: 0.5em;
+    border: 1px solid #dee2e6;
+}
+
+.container-grid-itemSelected .container-grid-item-topSelected, .container-grid-itemSelected .container-grid-item-bottomSelected {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-grid-itemSelected .container-grid-item-contentSelected {
+    text-align: center;
+}
+
+.container-grid-item-contentSelected > img {
+    height: 100px;
+	width: 100px;
+	object-fit: cover;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.container-grid-itemSelected .container-priceSelected {
+    font-size: 1.5rem;
+    font-weight: 600;
+}

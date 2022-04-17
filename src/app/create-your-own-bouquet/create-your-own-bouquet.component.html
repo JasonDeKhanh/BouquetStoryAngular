@@ -1,26 +1,260 @@
 <br />
-<div class="card">
-    <h1>Create Your Own Bouquet</h1>
-    <br />
-    <p-splitter [style]="{'height': '300px'}" styleClass="mb-5">
-        <ng-template pTemplate>
-            <div class="col flex align-items-center justify-content-center">
-                hahah choose items
-            </div>
-        </ng-template>
-        <ng-template pTemplate>
-            <div class="pl-4">
-                <p-scrollPanel [style]="{width: '100%', height: '200px'}" styleClass="custombar1">
-                    <h4>Container</h4>
-                    <div>
-
+<div class="card flex">
+    <div class="cardCreateSide">
+        <h1>Create Your Own Bouquet</h1>
+        <br />
+        <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custombarScrollBar">
+            <div>
+                <div class="pl-1">
+                    <h4>Select 1 container</h4>
+                    <div class="listContainers">
+                        <div>
+                            <p-dataView class="containersDataview" #dvContainers [value]="allContainers"
+                                [paginator]="true" [rows]="4" filterBy="color,containerType.name" layout="grid"
+                                [lazy]="true">
+                                <ng-template pTemplate="header">
+                                    <div class="flex flex-column md:flex-row md:justify-content-between">
+                                        <span class="p-input-icon-left">
+                                            <i class="pi pi-search"></i>
+                                            <input type="search" pInputText placeholder="Search by Name"
+                                                (input)="dvContainers.filter($any($event.target).value, 'contains')">
+                                        </span>
+                                    </div>
+                                </ng-template>
+                                <ng-template let-container pTemplate="gridItem" columns="2">
+                                    <div class="col-12 md:col-3">
+                                        <br />
+                                        <div class="container-grid-item cardItem">
+                                            <div class="container-grid-item-top">
+                                                <div>Flower Limit: {{container.flowerLimit}}</div>
+                                            </div>
+                                            <br />
+                                            <div class="container-grid-item-content">
+                                                <img
+                                                    [src]="'http://localhost:8080/BouquetStorySystem-war/' + container.imgAddress" />
+                                                <br />
+                                                <div class="container-name">
+                                                    {{container.color}}{{container.containerType.name}}
+                                                </div>
+                                                <div class="container-type">{{container.containerType.dimensions}}</div>
+                                                <br />
+                                            </div>
+                                            <div class="container-grid-item-bottom">
+                                                <p-button label="Select" (click)="addContainer(container)"></p-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                <ng-template pTemplate="footer"></ng-template>
+                            </p-dataView>
+                        </div>
                     </div>
-                    <h4>Flowers</h4>
-                    <div></div>
-                    <h4>Decorations</h4>
-                    <div></div>
-                </p-scrollPanel>
+                </div>
+                <!-- finish select container -->
+                <h4>Select {{curFlowerLimit}} flowers</h4>
+                <div class="listFlowers">
+                    <div>
+                        <p-dataView class="flowersDataview" #dvFlowers [value]="allFlowers" [paginator]="true"
+                            [rows]="4" filterBy="name" layout="grid" [lazy]="true">
+                            <ng-template pTemplate="header">
+                                <div class="flex flex-column md:flex-row md:justify-content-between">
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input type="search" pInputText placeholder="Search by Name"
+                                            (input)="dvFlowers.filter($any($event.target).value, 'contains')">
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template let-flower pTemplate="gridItem" columns="2">
+                                <div class="col-12 md:col-3">
+                                    <br />
+                                    <div class="container-grid-item cardItem">
+                                        <div class="container-grid-item-top">
+                                            <div>{{flower.flowerColor}} {{flower.flowerType.name}}</div>
+                                        </div>
+                                        <br />
+                                        <div class="container-grid-item-content">
+                                            <img
+                                                [src]="'http://localhost:8080/BouquetStorySystem-war/' + flower.imgAddress" />
+                                            <br />
+                                            <div class="container-name">
+                                                {{flower.name}}
+                                            </div>
+                                            <div class="container-type">{{flower.description}}</div>
+                                            <br />
+                                        </div>
+                                        <div class="container-grid-item-bottom">
+                                            <div *ngIf="newContainer == null">Please select a container to add flowers
+                                            </div>
+                                            <div *ngIf="newContainer != null && curFlowerLimit <= 0">
+                                                Flower limit reached!
+                                            </div>
+                                            <p-button *ngIf="newContainer != null && curFlowerLimit > 0" label="Select"
+                                                (click)="addOneFlower(flower)"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="footer"></ng-template>
+                        </p-dataView>
+                    </div>
+                </div>
+                <!-- finish select flowers, select decoration below -->
+                <h4>Select decorations</h4>
+                <div class="listDecorations">
+                    <div>
+                        <p-dataView class="decorationsDataview" #dvDecorations [value]="allDecorations"
+                            [paginator]="true" [rows]="4" filterBy="name" layout="grid" [lazy]="true">
+                            <ng-template pTemplate="header">
+                                <div class="flex flex-column md:flex-row md:justify-content-between">
+                                    <span class="p-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                        <input type="search" pInputText placeholder="Search by Name"
+                                            (input)="dvDecorations.filter($any($event.target).value, 'contains')">
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template let-decoration pTemplate="gridItem" columns="2">
+                                <div class="col-12 md:col-3">
+                                    <br />
+                                    <div class="container-grid-item cardItem">
+                                        <!-- <div class="container-grid-item-top">
+                                            <div>{{decoration.flowerColor}} {{decoration.flowerType.name}}</div>
+                                        </div> -->
+                                        <br />
+                                        <div class="container-grid-item-content">
+                                            <img
+                                                [src]="'http://localhost:8080/BouquetStorySystem-war/' + decoration.imgAddress" />
+                                            <br />
+                                            <div class="container-name">
+                                                {{decoration.name}}
+                                            </div>
+                                            <div class="container-type">{{decoration.description}}</div>
+                                            <br />
+                                        </div>
+                                        <div class="container-grid-item-bottom">
+                                            <div *ngIf="newContainer == null">Please select a container to add
+                                                decorations
+                                            </div>
+                                            <p-button *ngIf="newContainer != null" label="Select"
+                                                (click)="addOneDecoration(decoration)"></p-button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template pTemplate="footer"></ng-template>
+                        </p-dataView>
+                    </div>
+                </div>
+                <!-- finish add decorations -->
             </div>
-        </ng-template>
-    </p-splitter>
+        </p-scrollPanel>
+    </div>
+
+
+
+    <!-- stuff added -->
+    <div class="cardListAdded">
+        <h1>Your Bouquet</h1>
+        <h2 style="color:#ECB100;">Total Price: ${{totalPriceAmount}}</h2>
+        <br />
+        <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custombarScrollBar">
+            <div class="selectedContainer">
+                <h4>Selected Container</h4>
+                <div class="container-grid-item cardItem">
+                    <div *ngIf="newContainer != null">
+                        <div class="container-grid-item-content">
+                            <div>Flower Limit: {{newContainer.flowerLimit}}</div>
+                        </div>
+                        <br />
+                        <div class="container-grid-item-content">
+                            <img [src]="'http://localhost:8080/BouquetStorySystem-war/' + newContainer.imgAddress" />
+                            <br />
+                            <div class="container-name">
+                                {{newContainer.color}}
+                                {{newContainer?.containerType?.name}}
+                            </div>
+                            <div class="container-type">{{newContainer?.containerType?.dimensions}}</div>
+                            <br />
+                        </div>
+                    </div>
+                    <div *ngIf="newContainer == null">
+                        No container selected!
+                    </div>
+                </div>
+            </div>
+            <!-- below: added flowers -->
+            <div class="selectedFlowers">
+                <h4>Selected Flowers ({{totalFlowerQuantities}})</h4>
+                <div class="container-grid-item cardItem">
+                    <div *ngIf="newAddedFlowers.length > 0">
+                        <p-table [value]="newAddedFlowers" [scrollable]="true" scrollHeight="400px">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="min-width:200px">Flower Name</th>
+                                    <th style="min-width:200px">Image</th>
+                                    <th style="min-width:200px">Quantity Added</th>
+                                    <th style="min-width:200px">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-flower>
+                                <tr>
+                                    <td style="min-width:200px">{{flower.name}}</td>
+                                    <td style="min-width:200px">
+                                        <img style="height:100px; width:100px"
+                                            [src]="'http://localhost:8080/BouquetStorySystem-war/' + flower.imgAddress" />
+                                    </td>
+                                    <td style="min-width:200px">{{newFlowerQuantities.get(flower)}}</td>
+                                    <td style="min-width:200px">
+                                        <button (click)="removeFlowerFromAddedList(flower)" pButton pRipple
+                                            type="button" icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                    <div *ngIf="newAddedFlowers.length <= 0">
+                        No flowers added!
+                    </div>
+                </div>
+            </div>
+            <!-- below: added decorations -->
+            <div class="selectedDecorations">
+                <h4>Selected Decoration ({{totalDecorationQuantities}})</h4>
+                <div class="container-grid-item cardItem">
+                    <div *ngIf="newAddedDecorations.length > 0">
+                        <p-table [value]="newAddedDecorations" [scrollable]="true" scrollHeight="400px">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="min-width:200px">Decoration Name</th>
+                                    <th style="min-width:200px">Image</th>
+                                    <th style="min-width:200px">Quantity Added</th>
+                                    <th style="min-width:200px">Action</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-decoration>
+                                <tr>
+                                    <td style="min-width:200px">{{decoration.name}}</td>
+                                    <td style="min-width:200px">
+                                        <img style="height:100px; width:100px"
+                                            [src]="'http://localhost:8080/BouquetStorySystem-war/' + decoration.imgAddress" />
+                                    </td>
+                                    <td style="min-width:200px">{{newDecorationQuantities.get(decoration)}}</td>
+                                    <td style="min-width:200px">
+                                        <button (click)="removeDecorationFromAddedList(decoration)" pButton pRipple
+                                            type="button" icon="pi pi-trash"
+                                            class="p-button-rounded p-button-danger"></button>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                    <div *ngIf="newAddedDecorations.length <= 0">
+                        No decorations added!
+                    </div>
+                </div>
+            </div>
+        </p-scrollPanel>
+    </div>
 </div>

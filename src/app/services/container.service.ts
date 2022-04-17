@@ -14,7 +14,7 @@ export class ContainerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getContainer(): Observable<Container[]> {
+  getContainers(): Observable<Container[]> {
     return this.httpClient.get<Container[]>(this.baseUrl + "/retrieveAllContainers").pipe
       (
         catchError(this.handleError)

@@ -14,7 +14,7 @@ export class DecorationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBundles(): Observable<Decoration[]> {
+  getDecorations(): Observable<Decoration[]> {
     return this.httpClient.get<Decoration[]>(this.baseUrl + "/retrieveAllDecorations").pipe
       (
         catchError(this.handleError)
