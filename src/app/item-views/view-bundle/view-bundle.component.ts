@@ -5,10 +5,13 @@ import { SessionService } from '../../services/session.service';
 import { BundleService } from '../../services/bundle.service';
 import { Bundle } from '../../models/bundle';
 
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-view-bundle',
   templateUrl: './view-bundle.component.html',
-  styleUrls: ['./view-bundle.component.css']
+  styleUrls: ['./view-bundle.component.css'],
+  providers: [MessageService]
 })
 export class ViewBundleComponent implements OnInit {
   bundleId: string | null;

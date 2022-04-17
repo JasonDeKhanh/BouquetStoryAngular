@@ -9,11 +9,13 @@ import { BundleService } from '../services/bundle.service';
 import { Bundle } from '../models/bundle';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
 import { Product } from '../models/product';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-all-bundles',
     templateUrl: './all-bundles.component.html',
-    styleUrls: ['./all-bundles.component.css']
+    styleUrls: ['./all-bundles.component.css'],
+    providers: [MessageService]
 })
 export class AllBundlesComponent implements OnInit {
 
@@ -28,6 +30,7 @@ export class AllBundlesComponent implements OnInit {
     sortKey: string;
 
     constructor(private primengConfig: PrimeNGConfig,
+        private messageService: MessageService, 
         private bundleService: BundleService,
         private sessionService: SessionService) {
         this.bundles = new Array();
@@ -141,8 +144,8 @@ export class AllBundlesComponent implements OnInit {
         // add to cart
         if (itemAlreadyAdded === false) {
             console.log("cartLineItems.length?? " + cartLineItems.length)
-            newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, 100);
-            // newLineItem = new SaleTransactionLineItem(1, cartLineItems.length, 1, bundle.price);
+            // newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, 100);
+            newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, bundle.unitPrice);
             newLineItem.item = bundle;
             cartLineItems.push(newLineItem);
             this.sessionService.setCartLineItems(cartLineItems);
@@ -150,6 +153,7 @@ export class AllBundlesComponent implements OnInit {
             console.log("line item price: " + newLineItem.unitPrice)
             console.log("bundle total price: " + bundle.totalPrice)
             console.log("line item serial number??: " + newLineItem.serialNumber)
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Added item to cart!', life: 3000});
         }
         else // item already in cart 
         {
@@ -159,7 +163,7 @@ export class AllBundlesComponent implements OnInit {
             (newLineItem.quantity && curQuantity) ? newLineItem.quantity = curQuantity + 1 : null;
 
             this.sessionService.setCartLineItems(cartLineItems);
-
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Added item to cart!', life: 3000});
         }
 
     }

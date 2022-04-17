@@ -7,6 +7,7 @@ import { SessionService } from '../services/session.service';
 import { SaleTransaction } from '../models/sale-transaction';
 import { SalesTransactionReq } from '../models/sales-transaction-req';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
+import { Item } from '../models/item';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,8 +24,9 @@ export class SaleTransactionService {
   constructor(private httpClient: HttpClient,
     public sessionService: SessionService,) { }
 
-    createNewSessionService(username: string, saleTransaction: SaleTransaction, saleTransactionLineItems:SaleTransactionLineItem[]){
-      let salesTransactionReq = new SalesTransactionReq(username, saleTransaction, saleTransactionLineItems);
+    createNewSessionService(username: string, firstName: string, lastName:string, saleTransaction: SaleTransaction, 
+        saleTransactionLineItems:SaleTransactionLineItem[], items: number[]){
+      let salesTransactionReq = new SalesTransactionReq(username, firstName, lastName, saleTransaction, saleTransactionLineItems, items);
       return this.httpClient.put<number>(this.baseUrl, salesTransactionReq, httpOptions).pipe
       (
         catchError(this.handleError)
