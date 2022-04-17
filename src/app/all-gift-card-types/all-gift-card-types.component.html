@@ -7,7 +7,7 @@
                 <span class="p-input-icon-left mb-2 md:mb-0">
                     <i class="pi pi-search"></i>
                     <input type="search" pInputText placeholder="Search by Name"
-                        (input)="applyFilterGlobal($event, dv)">
+                        (input)="dv.filter($any($event.target).value, 'contains')">
                 </span>
                 <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
             </div>
