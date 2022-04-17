@@ -155,8 +155,18 @@
 
     <!-- stuff added -->
     <div class="cardListAdded">
-        <h1>Your Bouquet</h1>
-        <h2 style="color:#ECB100;">Total Price: ${{totalPriceAmount}}</h2>
+        <div class="flex flex-column md:flex-row md:justify-content-between">
+            <div>
+                <h1>Your Bouquet</h1>
+                <h2 style="color:#ECB100;">Total Price: ${{totalPriceAmount}}</h2>
+            </div>
+            <div>
+                <br />
+                <p-button style="margin-right: 0.9rem" label="Add Custom Bouquet to Cart"
+                    (click)="addCustomBouquetToCart()" [disabled]="newContainer == null || newAddedFlowers.length == 0">
+                </p-button>
+            </div>
+        </div>
         <br />
         <p-scrollPanel [style]="{width: '100%', height: '700px'}" styleClass="custombarScrollBar">
             <div class="selectedContainer">
