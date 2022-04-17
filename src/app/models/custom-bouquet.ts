@@ -7,7 +7,7 @@ export class CustomBouquet extends Bouquet {
     name: string | undefined;
 
     constructor(itemId?: number, totalPriceAmount?: number) {
-        super(itemId);
+        super(1);
 
         this.totalPriceAmount = totalPriceAmount;
         this.name = "Custom Bouquet";

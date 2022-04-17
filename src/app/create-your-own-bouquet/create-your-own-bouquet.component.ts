@@ -4,6 +4,7 @@ import { SessionService } from '../services/session.service';
 import { FlowerService } from '../services/flower.service';
 import { ContainerService } from '../services/container.service';
 import { DecorationService } from '../services/decoration.service';
+import { CustomBouquetService } from '../services/custom-bouquet.service';
 
 import { CustomBouquet } from '../models/custom-bouquet';
 import { Container } from '../models/container';
@@ -11,10 +12,16 @@ import { Flower } from '../models/flower';
 import { Decoration } from '../models/decoration';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
 
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { DatePipe } from '@angular/common';
+import { DropdownModule } from 'primeng/dropdown';
+
 @Component({
     selector: 'app-create-your-own-bouquet',
     templateUrl: './create-your-own-bouquet.component.html',
-    styleUrls: ['./create-your-own-bouquet.component.css']
+    styleUrls: ['./create-your-own-bouquet.component.css'],
+    providers: [MessageService, ConfirmationService, DatePipe, DropdownModule]
 })
 export class CreateYourOwnBouquetComponent implements OnInit {
 
@@ -24,11 +31,14 @@ export class CreateYourOwnBouquetComponent implements OnInit {
     newAddedFlowers: Flower[];
     newFlowerQuantities: Map<Flower, number>;
     totalFlowerQuantities: number;
-    // newFlowerQuantities: { Flower: number }[];
+
+    newFlowerQuantitiesArray: number[];
 
     newAddedDecorations: Decoration[];
     newDecorationQuantities: Map<Decoration, number>;
     totalDecorationQuantities: number;
+
+    newDecorationQuantitiesArray: number[];
 
     allContainers: Container[];
     allFlowers: Flower[];
@@ -39,9 +49,11 @@ export class CreateYourOwnBouquetComponent implements OnInit {
     totalPriceAmount: number;
 
     constructor(private sessionService: SessionService,
+        private messageService: MessageService,
         private flowerService: FlowerService,
         private containerService: ContainerService,
-        private decorationService: DecorationService) {
+        private decorationService: DecorationService,
+        private customBouquetService: CustomBouquetService) {
 
         // this.newContainer = new Container();
         this.newAddedFlowers = new Array();
@@ -217,23 +229,67 @@ export class CreateYourOwnBouquetComponent implements OnInit {
         newCustomBouquet.container = this.newContainer;
         newCustomBouquet.decorations = this.newAddedDecorations;
         newCustomBouquet.flowers = this.newAddedFlowers;
+        newCustomBouquet.totalPriceAmount = this.totalPriceAmount;
 
+        // persisting stuff
 
-        // add to cart
-        newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, this.totalPriceAmount);
-        newLineItem.item = newCustomBouquet;
-        cartLineItems.push(newLineItem);
-        this.sessionService.setCartLineItems(cartLineItems);
+        this.newFlowerQuantitiesArray = new Array<number>(this.newAddedFlowers.length);
 
-        // refresh current stuff
-        this.newContainer = null;
-        this.newAddedDecorations = new Array();
-        this.newAddedFlowers = new Array();
-        this.newDecorationQuantities = new Map();
-        this.newFlowerQuantities = new Map();
-        this.curFlowerLimit = 0;
-        this.totalPriceAmount = 0;
-        this.totalDecorationQuantities = 0;
-        this.totalFlowerQuantities = 0;
+        for (let i = 0; i < this.newAddedFlowers.length; i++) {
+            var curFlower = this.newAddedFlowers[i];
+            var curFlowerQty = this.newFlowerQuantities.get(curFlower);
+            this.newFlowerQuantitiesArray[i] = curFlowerQty;
+        }
+
+        this.newDecorationQuantitiesArray = new Array<number>(this.newAddedDecorations.length);
+
+        for (let i = 0; i < this.newAddedDecorations.length; i++) {
+            var curDecoration = this.newAddedDecorations[i];
+            var curDecorationQty = this.newDecorationQuantities.get(curDecoration);
+            this.newDecorationQuantitiesArray[i] = curDecorationQty;
+        }
+        console.log("before createNewCustomBouquet");
+        this.customBouquetService.createNewCustomBouquet(newCustomBouquet,
+            this.newContainer, this.newAddedFlowers, this.newFlowerQuantitiesArray,
+            this.newAddedDecorations, this.newDecorationQuantitiesArray).subscribe({
+                next: (response) => {
+                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Custom Bouquet Created!', life: 3000 });
+                    // window.location.reload();
+
+                    // this.displayRegisteredGuestCheckoutDialog = false;
+                    console.log("returned response: " + response);
+                    newCustomBouquet.itemId = response;
+
+                    // further processing
+                    console.log("after createNewCustomBouquet");
+
+                    console.log("curCustomBouquet id: " + newCustomBouquet.itemId);
+
+                    // call and persist before adding to line item and then to cart
+                    // add to cart
+                    newLineItem = new SaleTransactionLineItem(cartLineItems.length + 1, 1, this.totalPriceAmount);
+                    newLineItem.item = newCustomBouquet;
+                    cartLineItems.push(newLineItem);
+                    this.sessionService.setCartLineItems(cartLineItems);
+
+                    // refresh current stuff
+                    this.newContainer = null;
+                    this.newAddedDecorations = new Array();
+                    this.newAddedFlowers = new Array();
+                    this.newDecorationQuantities = new Map();
+                    this.newFlowerQuantities = new Map();
+                    this.curFlowerLimit = 0;
+                    this.totalPriceAmount = 0;
+                    this.totalDecorationQuantities = 0;
+                    this.totalFlowerQuantities = 0;
+                },
+                error: (error) => {
+                    //   this.message = "An error has occurred while registering new account: \n" + error;
+                    // this.message = "This email is already registered as a customer!";
+                    this.messageService.add({ severity: 'error', summary: 'Error Persisting Custom Bouquet', detail: 'Error Persisting Custom Bouquet!', life: 3000 });
+                    console.log('**********inside custombouquet create new?? Checkout.ts: ' + error);
+                }
+            })
+
     }
 }
