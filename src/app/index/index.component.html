@@ -8,15 +8,17 @@
 		Create your very own bouquet as a special gift for your loved ones!<br />
 		We also offer premade bouquets, add ons, and gift cards to make your gift extra special.
 	</div>
-	<br/>
-	<br/>
+	<br />
+	<br />
 	<div class="create-bouquet">
-		<button pButton type="button" label="Create a Custom Bouquet" class="p-button-lg" [routerLink]="'/createYourOwnBouquet'"></button>
+		<button pButton type="button" label="Create Your Own Bouquet" class="p-button-lg"
+			[routerLink]="'/createYourOwnBouquet'"></button>
 	</div>
-    <br/>
-	<br/>
+	<br />
+	<br />
 	<div class="item-carousel">
-		<p-carousel [value]="items" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1" [circular]="true" [autoplayInterval]="8000" [responsiveOptions]="responsiveOptions">
+		<p-carousel [value]="items" styleClass="custom-carousel" [numVisible]="4" [numScroll]="1" [circular]="true"
+			[autoplayInterval]="8000" [responsiveOptions]="responsiveOptions">
 			<ng-template pTemplate="header">
 				<h2>See some of our products</h2>
 			</ng-template>
@@ -24,7 +26,8 @@
 				<div class="product-item">
 					<div class="product-item-content">
 						<div class="mb-3">
-							<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + item.imgAddress" [alt]="item.name" class="product-image" />
+							<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + item.imgAddress"
+								[alt]="item.name" class="product-image" />
 						</div>
 						<div>
 							<h3 class="mb-1">{{item.name}}</h3>
