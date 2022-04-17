@@ -126,6 +126,10 @@ export class ShoppingCartComponent implements OnInit {
             this.totalPriceAmount += (lineItem.quantity && lineItem.unitPrice) ? lineItem.unitPrice * lineItem.quantity : 0;
         }
 
+        this.totalPriceAmount = Number(this.totalPriceAmount.toFixed(2));
+
+        
+
         console.log("line items: " + this.saleTransactionLineItems.toString());
         console.log("lineItem[0]: " + this.saleTransactionLineItems[0]?.item?.itemId);
         console.log("lineItem[0] serial num: " + this.saleTransactionLineItems[0]?.serialNumber);
@@ -138,7 +142,7 @@ export class ShoppingCartComponent implements OnInit {
     }
 
     getSubtotal(lineItem: SaleTransactionLineItem) {
-        return lineItem!.unitPrice! * lineItem!.quantity!;
+        return Number((lineItem!.unitPrice! * lineItem!.quantity!).toFixed(2));
     }
 
     updateTotalStuff(event: any) {
@@ -153,6 +157,8 @@ export class ShoppingCartComponent implements OnInit {
         }
         this.totalQuantity = tempQuantity;
         this.totalPriceAmount = tempPriceAmount;
+
+        this.totalPriceAmount =Number(this.totalPriceAmount.toFixed(2))
 
 
 
@@ -250,7 +256,7 @@ export class ShoppingCartComponent implements OnInit {
                 error: (error) => {
                     //   this.message = "An error has occurred while registering new account: \n" + error;
                     // this.message = "This email is already registered as a customer!";
-                    this.messageService.add({severity:'error', summary: 'Error', detail: 'Error Checkout!', life: 3000});
+                    this.messageService.add({severity:'error', summary: 'Error Checkout', detail: 'Insufficient quantity!', life: 3000});
                     console.log('********** Checkout.ts: ' + error);
                 }
             })
