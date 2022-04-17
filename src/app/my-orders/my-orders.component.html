@@ -25,19 +25,15 @@
                 </ng-template> -->
                 <ng-template pTemplate="header">
                     <tr>
-                        <th>Image</th>
-                        <th>Order Time</th>
-                        <th>Total Items</th>
-                        <th>Total Amount</th>
+                        <th pSortableColumn="orderTime">Order Time <p-sortIcon field="orderTime"></p-sortIcon></th>
+                        <th pSortableColumn="totalItems">Total Items <p-sortIcon field="orderTime"></p-sortIcon></th>
+                        <th pSortableColumn="totalAmount">Total Amount <p-sortIcon field="totalAmount"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 
                 <ng-template pTemplate="body" let-transaction>
                     <tr>
-                        <td>
-                            <img  [style]="{width: '150px', height: '150px', objectFit: 'cover'}"   [src]="'http://localhost:8080/BouquetStorySystem-war/' + transaction?.item.imgAddress" />
-                        </td>
                         <td>{{formationTime(transaction.transactionDateTime)}}</td>
                         <td>{{transaction.totalQuantity}}</td>
                         <td>{{transaction.totalAmount}}</td>
