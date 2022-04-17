@@ -5,8 +5,6 @@
         [sortOrder]="sortOrder" layout="grid">
         <ng-template pTemplate="header">
             <div class="flex flex-column md:flex-row md:justify-content-between">
-                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"
-                    styleClass="mb-2 md:mb-0"></p-dropdown>
                 <span class="p-input-icon-left mb-2 md:mb-0">
                     <i class="pi pi-search"></i>
                     <input type="search" pInputText placeholder="Search by Name"
@@ -30,7 +28,8 @@
                         <br />
                     </div>
                     <div class="addOn-grid-item-bottom">
-                        <p-button class="view-more-button" [routerLink]="['/viewAddOn', addOn.itemId]">View More</p-button>
+                        <p-button class="view-more-button" [routerLink]="['/viewAddOn', addOn.itemId]">View More
+                        </p-button>
                         &nbsp;&nbsp;&nbsp;
                         <p-button class="add-to-cart-button" (click)="addProductToCart(addOn)">Add to Cart</p-button>
                     </div>
