@@ -2,7 +2,7 @@
 <div class="card">
 
 	<span *ngIf="retrieveGiftCardTypeError == true" style="color:red;">GiftCardType ID {{giftCardTypeId}} does not exist!</span>
-
+	
 	<p-panel class="giftCardType-info" header="Gift Card Type Info" *ngIf="retrieveGiftCardTypeError == false && giftCardTypeToView != null">
 		<div class="giftCardType-image">
 			<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + giftCardTypeToView.imgAddress" />
@@ -25,16 +25,39 @@
 		</p-panel>
 		<br />
 
-                <p-panel class="giftCardType-sizeDimension" header="Size Dimensions">
+		<p-panel class="giftCardType-sizeDimension" header="Size Dimensions">
 			{{giftCardTypeToView.sizeDimensions}}
 		</p-panel>
 		<br />
-
-		<!-- <p-panel header="Product List">
-			Consider creating a getListFromProductQuantities method in GiftCardType to display here
-		</p-panel> -->
 		
+		<p-button class="create-gift-card-button"  (click)="showCreateGiftCardDialog()">Create Gift Card</p-button>
 		<!-- <p-button class="add-to-cart-button" (click)="addProductToCart(giftCardTypeToView)">Add to Cart</p-button> -->
+		
+		<p-dialog [(visible)]="displayCreateGiftCardDialog" header="Create Gift Card" [modal]="true" styleClass="p-fluid">
+			<ng-template pTemplate="content">
+				<!-- <form name="createGiftCardForm" ngNativeValidate> -->
+					<!-- <p-dialog header="Create Gift Card" [(visible)]="displayCreateGiftCardDialog"> -->
+						<div *ngIf="createGiftCardError == true" style="text-align: center; color: red;">
+							{{message}}
+						</div>
+						<div *ngIf="createGiftCardSuccess == true" style="text-align: center; color: green;">
+							{{message}}
+						</div>
+						<div class="field">
+							<label for="message" style="margin-right: 10px;">Gift Card Message</label>
+							<input type="text" size="25" pInputText placeholder="Enter Your Gift Card Message"
+								[(ngModel)]="newGiftCard.message" name="message" id="message" required>
+						</div>
+						<br /><br />
+						<div>
+							<button type="submit" value="Submit" pButton pRipple class="registerbtn"
+								(click)="createNewGiftCard()" label="Create"></button>
+						</div>
+					<!-- </p-dialog> -->
+				<!-- </form> -->
+			</ng-template>
+		</p-dialog>
+
 		
 	</p-panel>
 </div>
