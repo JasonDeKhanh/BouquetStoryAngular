@@ -8,7 +8,7 @@ export class SaleTransaction {
     totalQuantity: number | undefined;
     totalAmount: number | undefined;
     transactionDateTime: string | undefined;
-    collectionDatetime: string | undefined;
+    collectionDateTime: string | undefined;
     isSelfPickup: boolean | undefined;
     deliveryAddress: string | undefined;
     voidRefund: boolean | undefined;
@@ -25,7 +25,7 @@ export class SaleTransaction {
         this.totalQuantity = totalQuantity;
         this.totalAmount = totalAmount;
         this.transactionDateTime = transactionDateTime;
-        this.collectionDatetime = collectionDateTime;
+        this.collectionDateTime = collectionDateTime;
         this.isSelfPickup = isSelfPickup;
         this.deliveryAddress = deliveryAddress;
         this.voidRefund = voidRefund;

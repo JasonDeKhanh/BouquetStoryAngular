@@ -18,6 +18,7 @@ import { Item } from '../models/item';
 import { SelectItem } from 'primeng/api';
 
 import {DropdownModule} from 'primeng/dropdown';
+import { CustomBouquet } from '../models/custom-bouquet';
 
 @Component({
     selector: 'app-shopping-cart',
@@ -39,6 +40,8 @@ export class ShoppingCartComponent implements OnInit {
     creditCard : CreditCard = new CreditCard();
     expiryString : String = "";
     minDateValue : Date = new Date();
+    preOrderCollectionDateTime : Date  = new Date();
+    preOrderMinDateValue : Date  = new Date();
     newCustomerEmail : string;
     listAddresses: Array<SelectItem> = new Array<SelectItem>();
     listCreditCards: Array<SelectItem> = new Array<SelectItem>();
@@ -50,6 +53,8 @@ export class ShoppingCartComponent implements OnInit {
     addresses : Address[] | undefined;
     creditCards : CreditCard[] | undefined;
     items: number[] | undefined;
+
+    isPreOrder: boolean = false;
 
     displayRegisteredGuestCheckoutDialog : boolean = false;
     displayUnregisteredGuestCheckoutDialog : boolean = false;
@@ -64,11 +69,16 @@ export class ShoppingCartComponent implements OnInit {
         this.totalLineItem = 0;
         this.totalQuantity = 0;
         this.totalPriceAmount = 0;
-        this.collectionDateTime.setDate(new Date().getDate() + 3);
         this.isSelfPickup = false;
         this.deliveryAddress = "";
-        this.isPreorder = false;
-        this.minDateValue.setDate(new Date().getDate() + 3);
+        this.isPreorder = true;
+
+        // this.collectionDateTime.setDate(new Date().getDate() + 3);
+        // this.minDateValue.setDate(new Date().getDate() + 3);
+        
+        this.preOrderCollectionDateTime.setDate(new Date().getDate() + 3);
+        this.preOrderMinDateValue.setDate(new Date().getDate() + 3);
+        
    
         this.saleTransactionLineItems = new Array();
 
@@ -126,6 +136,9 @@ export class ShoppingCartComponent implements OnInit {
         for (var lineItem of this.saleTransactionLineItems) {
             this.totalQuantity += lineItem.quantity ? lineItem.quantity : 0;
             this.totalPriceAmount += (lineItem.quantity && lineItem.unitPrice) ? lineItem.unitPrice * lineItem.quantity : 0;
+            if(lineItem instanceof CustomBouquet) {
+                this.isPreOrder = true;
+            }
         }
 
         this.totalPriceAmount = Number(this.totalPriceAmount.toFixed(2));
@@ -211,7 +224,7 @@ export class ShoppingCartComponent implements OnInit {
         const datepipe: DatePipe = new DatePipe('en-US')
 
         let transactionDate = new Date().toISOString();
-        let collectionDate = this.collectionDateTime.toISOString();
+        let collectionDate = this.isPreOrder? this.preOrderCollectionDateTime.toISOString() :this.collectionDateTime.toISOString();
         let username = this.sessionService.getUsername();
         let firstName = this.sessionService.getCurrentCustomer().firstName;
         let lastName = this.sessionService.getCurrentCustomer().lastName;
@@ -282,7 +295,7 @@ export class ShoppingCartComponent implements OnInit {
         const datepipe: DatePipe = new DatePipe('en-US')
 
         let transactionDate = new Date().toISOString();
-        let collectionDate = this.collectionDateTime.toISOString();
+        let collectionDate = this.isPreOrder? this.preOrderCollectionDateTime.toISOString() :this.collectionDateTime.toISOString();
         let username = this.newUsername;
         let firstName = this.newFirstName
         let lastName = this.newLastName
