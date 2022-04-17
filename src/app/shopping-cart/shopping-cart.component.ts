@@ -94,10 +94,12 @@ export class ShoppingCartComponent implements OnInit {
             next:(response)=>{
                 this.creditCards = response;
 
-                for(var cc of this.creditCards)
-                this.listCreditCards.push(
-                    { label: cc.ccNum.toString(), value: cc }
-                )
+                for(var cc of this.creditCards) {
+                    let ccnum = cc.ccNum.length == 16 ? "******"+cc.ccNum.toString().substring(13, 4) : cc.ccNum;
+                    this.listCreditCards.push(
+                        { label: ccnum, value: cc }
+                    )
+                }
             },
             error:(error)=>{
                 console.log('********** ViewAllAddress.ts: ' + error);
