@@ -9,13 +9,13 @@ import { BundleService } from '../services/bundle.service';
 import { Bundle } from '../models/bundle';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
 import { Product } from '../models/product';
-import { MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';//<--------------
 
 @Component({
     selector: 'app-all-bundles',
     templateUrl: './all-bundles.component.html',
     styleUrls: ['./all-bundles.component.css'],
-    providers: [MessageService]
+    providers: [MessageService] //<--------------
 })
 export class AllBundlesComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class AllBundlesComponent implements OnInit {
     sortKey: string;
 
     constructor(private primengConfig: PrimeNGConfig,
-        private messageService: MessageService, 
+        private messageService: MessageService,  //<--------------
         private bundleService: BundleService,
         private sessionService: SessionService) {
         this.bundles = new Array();
