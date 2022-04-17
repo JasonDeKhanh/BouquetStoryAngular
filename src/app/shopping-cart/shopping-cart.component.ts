@@ -95,7 +95,7 @@ export class ShoppingCartComponent implements OnInit {
                 this.creditCards = response;
 
                 for(var cc of this.creditCards) {
-                    let ccnum = cc.ccNum.length == 16 ? "************"+cc.ccNum.toString().substring(13, 18) : cc.ccNum;
+                    let ccnum = cc.ccNum.length == 16 ? "************"+cc.ccNum.toString().substring(12, 19) : cc.ccNum;
                     this.listCreditCards.push(
                         { label: ccnum, value: cc }
                     )
