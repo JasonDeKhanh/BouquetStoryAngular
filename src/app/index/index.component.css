@@ -1,0 +1,53 @@
+.card {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: white;
+}
+
+.product-item-content {
+	border: 1px solid var(--surface-d);
+	border-radius: 3px;
+	margin: .3rem;
+	text-align: center;
+	padding: 2rem 0;
+}
+
+.product-image {
+	height: 120px;
+	width: 120px;
+	object-fit: cover;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+
+.welcome-title {
+	font-size: 3em;
+	text-align: center;
+}
+
+.welcome-subtitle {
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.create-bouquet {
+	display: flex;
+	justify-content: center;  
+	align-items: center;
+}
+
+.create-bouquet > button {
+	font-size: 3em;
+	align-items: center;
+	align-self: center;
+	align-content: center;
+	justify-content: center;
+	width: 60%;
+	height: 200px;
+}
