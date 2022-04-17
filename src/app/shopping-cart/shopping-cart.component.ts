@@ -41,7 +41,7 @@ export class ShoppingCartComponent implements OnInit {
     minDateValue : Date = new Date();
     newCustomerEmail : string;
     listAddresses: Array<SelectItem> = new Array<SelectItem>();
-    listCreditCard: Array<SelectItem> = new Array<SelectItem>();
+    listCreditCards: Array<SelectItem> = new Array<SelectItem>();
 
     newUsername : string;
     newFirstName : string;
@@ -95,7 +95,7 @@ export class ShoppingCartComponent implements OnInit {
                 this.creditCards = response;
 
                 for(var cc of this.creditCards)
-                this.listCreditCard.push(
+                this.listCreditCards.push(
                     { label: cc.creditCardId.toString(), value: cc }
                 )
             },
@@ -226,7 +226,7 @@ export class ShoppingCartComponent implements OnInit {
                 this.totalPriceAmount, transactionDate, collectionDate, this.isSelfPickup,
                 null, false, this.isPreorder, false);
             
-        } else if(this.isSelfPickup==false && this.address.line!='' && this.address.postCode!=''){
+        } else if(this.isSelfPickup==false && this.address.line!=undefined){
             console.log("=== register delivery checkout === ")
             validaCheckOut = true;
             this.deliveryAddress = this.address.line + "; Postal Code: "+this.address.postCode;
@@ -285,7 +285,11 @@ export class ShoppingCartComponent implements OnInit {
         let firstName = this.newFirstName
         let lastName = this.newLastName
 
-        if(username!='' && firstName!='' && lastName!='') {
+        let regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+
+        var isEmailValid: boolean = regexp.test(username);
+
+        if(username!='' && firstName!='' && lastName!='' && isEmailValid) {
 
             var newSaleTransaction: SaleTransaction;
 
@@ -299,7 +303,7 @@ export class ShoppingCartComponent implements OnInit {
                     this.totalPriceAmount, transactionDate, collectionDate, this.isSelfPickup,
                     null, false, this.isPreorder, false);
                 
-            } else if(this.isSelfPickup==false && this.address.line!='' && this.address.postCode!=''){
+            } else if(this.isSelfPickup==false && this.address!=undefined && this.address.line !="" && this.address.postCode !=""){
                 console.log("=== unregister delivery checkout === ")
                 validaCheckOut = true;
                 this.deliveryAddress = this.address.line + "; Postal Code: "+this.address.postCode;
@@ -340,6 +344,7 @@ export class ShoppingCartComponent implements OnInit {
             console.log("isSelfPickup: " + this.isSelfPickup);
             console.log("deliveryAddress: " + this.deliveryAddress);
             console.log("isPreorder: " + this.isPreorder);
+            console.log("address:========= " + this.address.line);
 
         }
     }

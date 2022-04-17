@@ -41,8 +41,10 @@
                 <td>{{lineItem?.serialNumber}}</td>
                 <!-- remove the item id column later, i used to debug only -->
                 <td>{{lineItem?.item?.itemId}}</td>
-                <td>item image</td>
-                <td>item name somehow</td>
+                <td>
+                    <img  [style]="{width: '150px', height: '150px', objectFit: 'cover'}"   [src]="'http://localhost:8080/BouquetStorySystem-war/' + lineItem?.item.imgAddress" />
+                </td>
+                <td>{{lineItem?.item.name}}</td>
                 <td>{{lineItem?.unitPrice}}</td>
                 <td>
                     <p-inputNumber [showButtons]="true" buttonLayout="vertical" spinnerMode="horizontal" [min]="1"
@@ -136,7 +138,7 @@
                     </div>
                 </ng-template>
             </p-dropdown> -->
-            <p-dropdown placeholder="Select a Type" [options]="creditCards" name="cc" [(ngModel)]="creditCard"
+            <p-dropdown placeholder="Select a Type" [options]="listCreditCards" name="cc" [(ngModel)]="creditCard"
                 defaultLabel="Select a Credit Card">
             </p-dropdown>
 
