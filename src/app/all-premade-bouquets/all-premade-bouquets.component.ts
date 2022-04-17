@@ -9,11 +9,13 @@ import { PremadeBouquetService } from '../services/premade-bouquet.service';
 import { PremadeBouquet } from '../models/premade-bouquet';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
 import { Product } from '../models/product';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-all-premade-bouquets',
   templateUrl: './all-premade-bouquets.component.html',
-  styleUrls: ['./all-premade-bouquets.component.css']
+  styleUrls: ['./all-premade-bouquets.component.css'],
+  providers: [MessageService]
 })
 export class AllPremadeBouquetsComponent implements OnInit {
 
@@ -28,6 +30,7 @@ export class AllPremadeBouquetsComponent implements OnInit {
 	sortKey: string;
 
   constructor(private primengConfig: PrimeNGConfig,
+    private messageService: MessageService, 
     private premadeBouquetService: PremadeBouquetService,
     private sessionService: SessionService) {
       this.premadeBouquets = new Array();
@@ -104,6 +107,7 @@ export class AllPremadeBouquetsComponent implements OnInit {
         console.log("inside here, item not already inside cart")
         console.log("line item price: " + newLineItem.unitPrice)
         console.log("line item serial number??: " + newLineItem.serialNumber)
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Added item to cart!', life: 3000});
     }
     else // item already in cart 
     {
@@ -113,6 +117,7 @@ export class AllPremadeBouquetsComponent implements OnInit {
         (newLineItem.quantity && curQuantity) ? newLineItem.quantity = curQuantity + 1 : null;
 
         this.sessionService.setCartLineItems(cartLineItems);
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Added item to cart!', life: 3000});
 
     }
 

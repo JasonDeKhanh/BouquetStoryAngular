@@ -1,6 +1,7 @@
 <br />
 <div class="card">
     <h2>Shopping Cart</h2>
+    <p-toast></p-toast>
     <p-table #dt [value]="saleTransactionLineItems!" [rows]="10" responsiveLayout="scroll" [rowHover]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <!-- <ng-template pTemplate="caption">
@@ -80,32 +81,27 @@
 </div>
 
 <form name="registeredGuestCheckout" ngNativeValidate>
-    <p-dialog header="Checkout"  [(visible)]="displayRegisteredGuestCheckoutDialog" [style]="{width: '450px', height:'700px'}" [modal]="true" styleClass="p-fluid" > 
+    <p-dialog header="Checkout"  [(visible)]="displayRegisteredGuestCheckoutDialog" [style]="{width: '500px', height:'700px'}" [modal]="true" styleClass="p-fluid" > 
         <ng-template pTemplate="content">
 
-            <div class="field">
+            <!-- <div class="field">
                 <label for="ccNo">Credit Card No</label>
                 <p-inputMask id="ccNo" name="ccNo" [(ngModel)]="creditCard.ccNum"mask="9999999999999999" placeholder="0000-0000-0000-0000" [required]="true"></p-inputMask>
-                <!-- <input type="text" pInputText id="name" name="name" [(ngModel)]="address.postCode" required /> -->
-                <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
             </div>
 
             <div class="field">
                 <label for="holderName">Card Holder Name</label>
                 <input type="text" pInputText id="holderName" name="holderName" [(ngModel)]="creditCard.ccHolderName" required />
-                <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
             </div>
             
             <div class="field">
                 <span for="expiry">Card Expiry (YY/MM) </span>
                 <p-inputMask  id="expiry" name="expiry" [(ngModel)]="expiryString" mask="99/99" placeholder="yy/mm" [required]="true"></p-inputMask>
-                <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
             </div>
 
             <div class="field">
                 <span for="cvv">CVV </span>
                 <p-inputMask  id="cvv" name="cvv" mask="999" placeholder="000" [required]="true"></p-inputMask>
-                <!-- <small class="p-error" *ngIf="submitted && !address.postCode">Postal Code is required.</small> -->
             </div>
 
             <p-divider></p-divider>
@@ -130,39 +126,49 @@
                     <label for="name">Post Code</label>
                     <input type="text" pInputText id="name" name="name" [(ngModel)]="address.postCode" required />
                 </div>
-            </div>
+            </div> -->
 
-            <!-- <h5>Credit Card List</h5>
-            <p-dropdown [options]="creditCards" [(ngModel)]="creditCard" name="ss"  placeholder="Select a Credit Card" [group]="true">
+            <h5>Credit Card List</h5>
+            <!-- <p-dropdown [options]="creditCards" [(ngModel)]="creditCard" name="ss"  placeholder="Select a Credit Card" [group]="true">
                 <ng-template let-cc pTemplate="cc">
                     <div class="flex align-items-center">
                         <span>{{cc.creditCardId}}</span>
                     </div>
                 </ng-template>
+            </p-dropdown> -->
+            <p-dropdown placeholder="Select a Type" [options]="creditCards" name="cc" [(ngModel)]="creditCard"
+                defaultLabel="Select a Credit Card">
             </p-dropdown>
 
             <p-divider></p-divider>
-            <h5>Address List</h5>
-            <p-dropdown [options]="addresses" [(ngModel)]="address" name="address" placeholder="Select a Address"  [group]="true"
-            [showClear]="true">
-                <ng-template let-group pTemplate="group">
-                    <div class="flex align-items-center">
-                        <span>{{group.line}} {{group.postCode}}</span>
-                    </div>
-                </ng-template>
-            </p-dropdown>
+            
 
         
             <div class="p-field-radiobutton" style="margin: 1.5em 0;">
-                <p-radioButton name="isSelfPickup" value="true" [(ngModel)]="isSelfPickup" inputId="isSelfPickup1" required></p-radioButton>
+                <p-radioButton name="isSelfPickup" [value]="true" [(ngModel)]="isSelfPickup" inputId="isSelfPickup1" required></p-radioButton>
                 <label for="isSelfPickup1">Self-Pickup</label> &nbsp;&nbsp;
-                <p-radioButton name="isSelfPickup" value="false" [(ngModel)]="isSelfPickup" inputId="isSelfPickup2"></p-radioButton>
+                <p-radioButton name="isSelfPickup" [value]="false" [(ngModel)]="isSelfPickup" inputId="isSelfPickup2"></p-radioButton>
                 <label for="isSelfPickup2">Delivery</label>
             </div>
             <div class="field" >
                 <label  for="dates">Pickup / Deliery Date</label>
                 <p-calendar [(ngModel)]="collectionDateTime" name="dates" [minDate]="minDateValue" [readonlyInput]="true" inputId="dates"></p-calendar>
-            </div> -->
+            </div>
+
+            <div *ngIf="isSelfPickup==false">
+                <h5>Address List</h5>
+                <!-- <p-dropdown [options]="addressLines" [(ngModel)]="address" name="address" placeholder="Select a Address"  [group]="true"
+                [showClear]="true">
+                    <ng-template let-group pTemplate="group">
+                        <div class="flex align-items-center">
+                            <span>{{group.line}} {{group.postCode}}</span>
+                        </div>
+                    </ng-template>
+                </p-dropdown> -->
+                <p-dropdown placeholder="Select a Type" [options]="listAddresses" name="address" [(ngModel)]="address"
+                    defaultLabel="Select Address">
+                </p-dropdown>
+            </div>
             
 
             <!-- <div class="field">
@@ -185,7 +191,7 @@
 </form>
 
 <form name="unregisteredGuestCheckout" ngNativeValidate>
-        <p-dialog header="Checkout"  [(visible)]="displayUnregisteredGuestCheckoutDialog" [style]="{width: '450px'}" [modal]="true" styleClass="p-fluid" > 
+        <p-dialog header="Checkout"  [(visible)]="displayUnregisteredGuestCheckoutDialog" [style]="{width: '500px'}" [modal]="true" styleClass="p-fluid" > 
             <ng-template pTemplate="content">
                 <div class="field">
                     <label for="email">Email</label>

@@ -52,6 +52,8 @@ import { AllGiftCardTypesComponent } from './all-gift-card-types/all-gift-card-t
 import { CreateYourOwnBouquetComponent } from './create-your-own-bouquet/create-your-own-bouquet.component';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SplitterModule } from 'primeng/splitter';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 
 @NgModule({
@@ -107,6 +109,8 @@ import { SplitterModule } from 'primeng/splitter';
     CalendarModule,
     ScrollPanelModule,
     SplitterModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

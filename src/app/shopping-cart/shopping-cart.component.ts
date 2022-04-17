@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';;
 import { AddressService } from '../services/address.service';
 import { CreditCardService } from '../services/credit-card.service';
 import { Item } from '../models/item';
+import { SelectItem } from 'primeng/api';
 
 import {DropdownModule} from 'primeng/dropdown';
 
@@ -39,6 +40,8 @@ export class ShoppingCartComponent implements OnInit {
     expiryString : String = "";
     minDateValue : Date = new Date();
     newCustomerEmail : string;
+    listAddresses: Array<SelectItem> = new Array<SelectItem>();
+    listCreditCard: Array<SelectItem> = new Array<SelectItem>();
 
     newUsername : string;
     newFirstName : string;
@@ -48,8 +51,8 @@ export class ShoppingCartComponent implements OnInit {
     creditCards : CreditCard[] | undefined;
     items: number[] | undefined;
 
-    displayRegisteredGuestCheckoutDialog: boolean = false;
-    displayUnregisteredGuestCheckoutDialog: boolean = false;
+    displayRegisteredGuestCheckoutDialog : boolean = false;
+    displayUnregisteredGuestCheckoutDialog : boolean = false;
 
     constructor(public sessionService: SessionService,
                 private messageService: MessageService, 
@@ -69,18 +72,32 @@ export class ShoppingCartComponent implements OnInit {
    
         this.saleTransactionLineItems = new Array();
 
+        this.addresses = new Array();
         this.addressService.getAddresses(this.sessionService.getUsername()).subscribe({
             next:(response)=>{
                 this.addresses = response;
+
+                for(var address of this.addresses)
+                this.listAddresses.push(
+                    { label: address.line, value: address }
+                )
             },
             error:(error)=>{
                 console.log('********** ViewAllAddress.ts: ' + error);
             }
         });
 
+        
+
+
         this.creditCardService.getcreditCards(this.sessionService.getUsername()).subscribe({
             next:(response)=>{
                 this.creditCards = response;
+
+                for(var cc of this.creditCards)
+                this.listCreditCard.push(
+                    { label: cc.creditCardId.toString(), value: cc }
+                )
             },
             error:(error)=>{
                 console.log('********** ViewAllAddress.ts: ' + error);
@@ -153,13 +170,13 @@ export class ShoppingCartComponent implements OnInit {
     }
 
 
-    doRegisteredCheckout(newSaleTransactionItems: SaleTransactionLineItem[]) {
+    doRegisteredCheckout(newSaleTransactionItems : SaleTransactionLineItem[] ) {
         this.displayRegisteredGuestCheckoutDialog = true;
 
         this.saleTransactionLineItems = newSaleTransactionItems;
 
         for (var lineItem of newSaleTransactionItems) {
-            console.log("==>" + lineItem.item!.itemId);
+            console.log("==>"+lineItem.item.itemId);
         }
 
         // call saletransactionservice

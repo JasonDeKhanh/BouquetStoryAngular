@@ -10,10 +10,13 @@ import { AddOn } from '../models/add-on';
 import { SaleTransactionLineItem } from '../models/sale-transaction-line-item';
 import { Product } from '../models/product';
 
+import { MessageService } from 'primeng/api';
+
 @Component({
 	selector: 'app-all-add-ons',
 	templateUrl: './all-add-ons.component.html',
-	styleUrls: ['./all-add-ons.component.css']
+	styleUrls: ['./all-add-ons.component.css'],
+    providers: [MessageService]
 })
 export class AllAddOnsComponent implements OnInit {
 
@@ -28,8 +31,9 @@ export class AllAddOnsComponent implements OnInit {
 	sortKey: string;
 
 	constructor(private primengConfig: PrimeNGConfig,
-	private addOnService: AddOnService,
-	private sessionService: SessionService) {
+        private messageService: MessageService, 
+        private addOnService: AddOnService,
+        private sessionService: SessionService) {
 		this.addOns = new Array();
 
 		// dataview stuff
@@ -104,6 +108,8 @@ export class AllAddOnsComponent implements OnInit {
             console.log("inside here, item not already inside cart")
             console.log("line item price: " + newLineItem.unitPrice)
             console.log("line item serial number??: " + newLineItem.serialNumber)
+            
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Added item to cart!', life: 3000});
         }
         else // item already in cart 
         {
@@ -113,6 +119,8 @@ export class AllAddOnsComponent implements OnInit {
             (newLineItem.quantity && curQuantity) ? newLineItem.quantity = curQuantity + 1 : null;
 
             this.sessionService.setCartLineItems(cartLineItems);
+            
+            this.messageService.add({severity:'success', summary: 'Successful', detail: 'Added item to cart!', life: 3000});
 
         }
 
