@@ -4,7 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from '../../services/session.service';
 import { GiftCardTypeService } from '../../services/gift-card-type.service';
 import { GiftCardType } from '../../models/gift-card-type';
+import { GiftCard } from '../../models/gift-card';
 
+import { SaleTransactionLineItem } from '../../models/sale-transaction-line-item';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -20,7 +22,9 @@ export class ViewGiftCardTypeComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              public giftCardTypeService: GiftCardTypeService)
+              public giftCardTypeService: GiftCardTypeService,
+              private sessionService: SessionService,
+              private messageService: MessageService)
   {
     this.giftCardTypeId = null;
     this.giftCardTypeToView = new GiftCardType();

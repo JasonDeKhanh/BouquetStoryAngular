@@ -3,13 +3,13 @@
 
 	<span *ngIf="retrievePremadeBouquetError == true" style="color:red;">PremadeBouquet ID {{premadeBouquetId}} does not exist!</span>
 
-	<p-panel class="premadeBouquet-info" header="PremadeBouquet Info" *ngIf="retrievePremadeBouquetError == false && premadeBouquetToView != null">
+	<p-panel class="premadeBouquet-info" header="Premade Bouquet Info" *ngIf="retrievePremadeBouquetError == false && premadeBouquetToView != null">
 		<div class="premadeBouquet-image">
 			<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + premadeBouquetToView.imgAddress" />
 		</div>
 		<br />
 
-		<p-panel class="premadeBouquet-name" header="PremadeBouquet Name">
+		<p-panel class="premadeBouquet-name" header="Name">
 			{{premadeBouquetToView.name}}
 		</p-panel>
 		<br />

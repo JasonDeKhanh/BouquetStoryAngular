@@ -16,6 +16,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ViewBundleComponent } from './item-views/view-bundle/view-bundle.component';
 import { ViewAddOnComponent } from './item-views/view-add-on/view-add-on.component';
 import { ViewPremadeBouquetComponent } from './item-views/view-premade-bouquet/view-premade-bouquet.component';
+import { ViewGiftCardTypeComponent } from './item-views/view-gift-card-type/view-gift-card-type.component';
 import { CreateYourOwnBouquetComponent } from './create-your-own-bouquet/create-your-own-bouquet.component';
 
 const routes: Routes = [
@@ -38,6 +39,8 @@ const routes: Routes = [
   { path: 'viewAddOn/:addOnId', component: ViewAddOnComponent },
   { path: 'viewPremadeBouquet', component: ViewPremadeBouquetComponent },
   { path: 'viewPremadeBouquet/:premadeBouquetId', component: ViewPremadeBouquetComponent },
+  { path: 'viewGiftCard', component: ViewGiftCardTypeComponent },
+  { path: 'viewGiftCard/:giftCardTypeId', component: ViewGiftCardTypeComponent },
   { path: 'createYourOwnBouquet', component: CreateYourOwnBouquetComponent }
 ];
 
