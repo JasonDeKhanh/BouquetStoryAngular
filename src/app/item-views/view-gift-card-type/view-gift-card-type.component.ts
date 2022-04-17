@@ -9,6 +9,7 @@ import { GiftCard } from '../../models/gift-card';
 import { SaleTransactionLineItem } from '../../models/sale-transaction-line-item';
 import { MessageService } from 'primeng/api';
 import {FileUploadModule} from 'primeng/fileupload';
+import {HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-view-gift-card-type',
@@ -25,6 +26,7 @@ export class ViewGiftCardTypeComponent implements OnInit {
   newGiftCard: GiftCard;
   message: string | undefined;
   createGiftCardSuccess: boolean;
+  uploadedFiles: any[] = [];
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -86,11 +88,19 @@ export class ViewGiftCardTypeComponent implements OnInit {
     this.createGiftCardSuccess = true;
   }
 
+  onUpload(event: any) {
+    for(let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  }
+
   showCreateGiftCardDialog() {
     this.displayCreateGiftCardDialog = true;
     this.createGiftCardError = false;
     this.newGiftCard = new GiftCard();
     this.createGiftCardSuccess = false;
+    this.uploadedFiles = [];
   }
 
 }

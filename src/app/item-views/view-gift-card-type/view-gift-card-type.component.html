@@ -49,6 +49,16 @@
 								[(ngModel)]="newGiftCard.message" name="message" id="message" required>
 						</div>
 						<br /><br />
+						<div class="upload-image">
+							<p-fileUpload name="myfile" url="'http://localhost:8080/BouquetStorySystem-war/Resource/File/upload'" (onUpload)="onUpload($event)" accept="image/*" >
+								<ng-template pTemplate="content">
+									<ul *ngIf="uploadedFiles.length">
+										<li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+									</ul>
+								</ng-template>
+							</p-fileUpload>
+						</div>
+						<br /><br />
 						<div>
 							<button type="submit" value="Submit" pButton pRipple class="registerbtn"
 								(click)="createNewGiftCard()" label="Create"></button>

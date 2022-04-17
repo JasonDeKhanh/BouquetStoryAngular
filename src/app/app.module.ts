@@ -56,6 +56,8 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { ViewGiftCardTypeComponent } from './item-views/view-gift-card-type/view-gift-card-type.component';
 import {CarouselModule} from 'primeng/carousel';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 @NgModule({
   declarations: [
@@ -113,7 +115,8 @@ import {CarouselModule} from 'primeng/carousel';
     SplitterModule,
     MessagesModule,
     MessageModule,
-    CarouselModule
+    CarouselModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
