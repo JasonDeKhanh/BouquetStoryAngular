@@ -1,0 +1,22 @@
+.card {
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+	border-radius: 4px;
+	margin-bottom: 2rem;
+	margin-left: 5%;
+	margin-right: 5%;
+	background-color: white;
+}
+
+:host ::ng-deep .p-dataview-header {
+	background-color: #f2e8e076;
+	border-radius: 4px;
+}
+
+.addOn-image > img {
+	width: 400px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}

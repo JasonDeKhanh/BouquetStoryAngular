@@ -1,1 +1,30 @@
-<p>view-add-on works!</p>
+<br />
+<div class="card">
+
+	<span *ngIf="retrieveAddOnError == true" style="color:red;">AddOn ID {{addOnId}} does not exist!</span>
+
+	<p-panel class="addOn-info" header="Add On Info" *ngIf="retrieveAddOnError == false && addOnToView != null">
+		<div class="addOn-image">
+			<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + addOnToView.imgAddress" />
+		</div>
+		<br />
+
+		<p-panel class="addOn-name" header="Name">
+			{{addOnToView.name}}
+		</p-panel>
+		<br />
+
+		<p-panel class="addOn-price" header="Price">
+                        ${{addOnToView.unitPrice | number : '.2-2'}}
+		</p-panel>
+		<br />
+
+		<p-panel class="addOn-description" header="Description">
+			{{addOnToView.description}}
+		</p-panel>
+		<br />
+		
+		<p-button class="add-to-cart-button" (click)="addProductToCart(addOnToView)">Add to Cart</p-button>
+		
+	</p-panel>
+</div>

@@ -1,0 +1,40 @@
+<br />
+<div class="card">
+
+	<span *ngIf="retrieveGiftCardTypeError == true" style="color:red;">GiftCardType ID {{giftCardTypeId}} does not exist!</span>
+
+	<p-panel class="giftCardType-info" header="Gift Card Type Info" *ngIf="retrieveGiftCardTypeError == false && giftCardTypeToView != null">
+		<div class="giftCardType-image">
+			<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + giftCardTypeToView.imgAddress" />
+		</div>
+		<br />
+
+		<p-panel class="giftCardType-name" header="Name">
+			{{giftCardTypeToView.name}}
+		</p-panel>
+		<br />
+
+		<p-panel class="giftCardType-price" header="Price">
+                        ${{giftCardTypeToView.unitPrice | number : '.2-2'}}
+
+		</p-panel>
+		<br />
+
+		<p-panel class="giftCardType-description" header="Description">
+			{{giftCardTypeToView.description}}
+		</p-panel>
+		<br />
+
+                <p-panel class="giftCardType-sizeDimension" header="Size Dimensions">
+			{{giftCardTypeToView.sizeDimensions}}
+		</p-panel>
+		<br />
+
+		<!-- <p-panel header="Product List">
+			Consider creating a getListFromProductQuantities method in GiftCardType to display here
+		</p-panel> -->
+		
+		<!-- <p-button class="add-to-cart-button" (click)="addProductToCart(giftCardTypeToView)">Add to Cart</p-button> -->
+		
+	</p-panel>
+</div>

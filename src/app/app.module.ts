@@ -54,6 +54,7 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SplitterModule } from 'primeng/splitter';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { ViewGiftCardTypeComponent } from './item-views/view-gift-card-type/view-gift-card-type.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import {MessageModule} from 'primeng/message';
     AllPremadeBouquetsComponent,
     AllGiftCardTypesComponent,
     CreateYourOwnBouquetComponent,
+    ViewGiftCardTypeComponent,
   ],
   imports: [
     BrowserModule,

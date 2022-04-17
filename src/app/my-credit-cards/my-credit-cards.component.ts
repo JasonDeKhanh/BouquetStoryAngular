@@ -26,6 +26,7 @@ export class MyCreditCardsComponent implements OnInit {
   creditCard: CreditCard = new CreditCard();
   submitted: boolean = false;
   updateCreditCardDialog: boolean = false;
+  expiryString : string;
 
   constructor(private router: Router,
     public sessionService: SessionService,
@@ -121,9 +122,16 @@ hideDialog() {
 
 addCreditCard(){
   this.submitted = true;
+   
+  this.creditCard.ccExpiryYear = this.expiryString.substring(0,2);
+  this.creditCard.ccExpiryMonth = this.expiryString.substring(3,5);
+  console.log(this.expiryString)
+  console.log(this.creditCard.ccExpiryYear)
+  console.log(this.creditCard.ccExpiryMonth)
 
-  if(this.creditCard.ccNum!="" && this.creditCard.ccHolderName!=""
-    && this.creditCard.ccExpiryYear!=""&& this.creditCard.ccExpiryMonth!="") {
+  if(this.creditCard.ccNum!=undefined && this.creditCard.ccHolderName!=undefined
+    && this.creditCard.ccExpiryYear!=undefined&& this.creditCard.ccExpiryMonth!=undefined) {
+      console.log("im here....")
     this.creditCardService.createNewCreditCard(this.creditCard).subscribe({
       next: (response) => {
           this.messageService.add({severity:'success', summary: 'Successful', detail: 'CreditCard Added', life: 3000});

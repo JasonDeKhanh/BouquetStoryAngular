@@ -59,8 +59,10 @@
 <p-dialog [(visible)]="creditCardDialog" [style]="{width: '450px'}" header="Credit Card Details" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="field">
-            <label for="description">Credit Card Number</label>
-            <input  type="text" id="description" pInputText [(ngModel)]="creditCard.ccNum" required autofocus />
+            <label for="ccNo">Credit Card Number</label>
+            <!-- <input  type="text" id="description" pInputText [(ngModel)]="creditCard.ccNum" required autofocus /> -->
+            <p-inputMask id="ccNo" name="ccNo" [(ngModel)]="creditCard.ccNum"mask="9999999999999999" placeholder="0000-0000-0000-0000" [required]="true"></p-inputMask>
+                    
             <small class="p-error" *ngIf="submitted && !creditCard.ccNum">Credit card number is required.</small>
         </div>
         <div class="field">
@@ -69,6 +71,11 @@
             <small class="p-error" *ngIf="submitted && !creditCard.ccHolderName">Holder name is required.</small>
         </div>
         <div class="field">
+            <span for="expiry">Card Expiry (YY/MM) </span>
+            <p-inputMask  id="expiry" name="expiry" [(ngModel)]="expiryString" mask="99/99" placeholder="yy/mm" [required]="true"></p-inputMask>
+            <small class="p-error" *ngIf="submitted && !creditCard.ccExpiryYear ">Postal Code is required.</small>
+        </div>
+        <!-- <div class="field">
             <label for="year">Expiry Year</label>
             <input type="text" pInputText id="year" [(ngModel)]="creditCard.ccExpiryYear" required autofocus />
             <small class="p-error" *ngIf="submitted && !creditCard.ccExpiryYear">Expiry year is required.</small>
@@ -77,7 +84,7 @@
             <label for="month">Expiry Month</label>
             <input type="text" pInputText id="month" [(ngModel)]="creditCard.ccExpiryMonth" required autofocus />
             <small class="p-error" *ngIf="submitted && !creditCard.ccExpiryMonth">Expiry month is required.</small>
-        </div>
+        </div> -->
     </ng-template>
 
     <ng-template pTemplate="footer">

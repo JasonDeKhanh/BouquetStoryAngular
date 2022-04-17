@@ -1,1 +1,52 @@
-<p>view-premade-bouquet works!</p>
+<br />
+<div class="card">
+
+	<span *ngIf="retrievePremadeBouquetError == true" style="color:red;">PremadeBouquet ID {{premadeBouquetId}} does not exist!</span>
+
+	<p-panel class="premadeBouquet-info" header="Premade Bouquet Info" *ngIf="retrievePremadeBouquetError == false && premadeBouquetToView != null">
+		<div class="premadeBouquet-image">
+			<img [src]="'http://localhost:8080/BouquetStorySystem-war/' + premadeBouquetToView.imgAddress" />
+		</div>
+		<br />
+
+		<p-panel class="premadeBouquet-name" header="Name">
+			{{premadeBouquetToView.name}}
+		</p-panel>
+		<br />
+
+		<p-panel class="premadeBouquet-price" header="Price">
+			<span>
+				${{premadeBouquetToView.bouquetPrice | number : '.2-2'}}
+			</span>
+		</p-panel>
+		<br />
+
+		<p-panel class="premadeBouquet-description" header="Description">
+			{{premadeBouquetToView.description}}
+		</p-panel>
+		<br />
+
+                <!-- <p-panel class="premadeBouquet-occasions" header="Suitable For These Occasions">
+			{{premadeBouquetToView.occasions}}
+		</p-panel>
+		<br /> -->
+
+                <!-- <p-panel class="premadeBouquet-flowers" header="Flowers in Bouquet">
+			{{premadeBouquetToView.flowers}}
+		</p-panel>
+		<br /> -->
+
+                <!-- <p-panel class="premadeBouquet-decorations" header="Decorations in Bouquet">
+			{{premadeBouquetToView.decorations}}
+		</p-panel>
+		<br /> -->
+
+                <p-panel class="premadeBouquet-container-name" header="Container">
+			{{premadeBouquetToView.container?.containerType?.name}} ({{premadeBouquetToView.container?.containerType?.dimensions}})
+		</p-panel>
+		<br />
+		
+		<p-button class="add-to-cart-button" (click)="addProductToCart(premadeBouquetToView)">Add to Cart</p-button>
+		
+	</p-panel>
+</div>

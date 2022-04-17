@@ -33,7 +33,7 @@ export class SaleTransactionService {
       );
     }
 
-    getSessionServices(username: string | undefined): Observable<SaleTransaction[]> {
+    getAllSalesTransactions(username: string | undefined): Observable<SaleTransaction[]> {
       return this.httpClient.get<SaleTransaction[]>(this.baseUrl + "/retrieveAllTransactions?username="+username).pipe
           (
               catchError(this.handleError)
