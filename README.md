@@ -31,11 +31,11 @@ The common backend incorporates both a component-based architecture and a servic
 
 ## Screenshots
 
- <img src="https://imgur.com/ae6Gkks" width="800" height="400" alt="E-commerce website home page"/>
+ <img src="https://i.imgur.com/ae6Gkks.png" width="800" height="400" alt="E-commerce website home page"/>
  
- <img src="https://imgur.com/ZCcreS1" width="800" height="400" alt="E-commerce website shopping cart"/>
+ <img src="https://i.imgur.com/ZCcreS1.png" width="800" height="400" alt="E-commerce website shopping cart"/>
   
- <img src="https://imgur.com/9r09tOM" width="800" height="450" alt="Admin Home Page"/>
+ <img src="https://i.imgur.com/9r09tOM.png" width="800" height="450" alt="Admin Home Page"/>
   
  <img src="https://i.imgur.com/7vxUlBx.png" width="250" height="400" alt="Poster"/>
 
